@@ -34,8 +34,6 @@
 #ifndef _LV_PRINTF_H_
 #define _LV_PRINTF_H_
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_printf.h
-=======
 #if defined(__has_include)
     #if __has_include(<inttypes.h>)
         #include <inttypes.h>
@@ -52,7 +50,6 @@
     #define LV_PRIu32 "u"
 #endif
 
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_printf.h
 #ifdef __cplusplus
 extern "C" {
 #endif

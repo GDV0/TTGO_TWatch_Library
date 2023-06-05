@@ -14,13 +14,8 @@ extern "C" {
  *      INCLUDES
  *********************/
 #include <stdbool.h>
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_buf.h
-#include "../lv_misc/lv_color.h"
-#include "../lv_misc/lv_area.h"
-=======
 #include "../misc/lv_color.h"
 #include "../misc/lv_area.h"
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_buf.h
 
 /*********************
  *      DEFINES
@@ -109,6 +104,7 @@ enum {
 };
 typedef uint8_t lv_img_cf_t;
 
+
 /**
  * The first 8 bit is very important to distinguish the different source types.
  * For more info see `lv_img_get_src_type()` in lv_img.c
@@ -123,11 +119,7 @@ typedef struct {
     uint32_t reserved : 2; /*Reserved to be used later*/
     uint32_t always_zero : 3; /*It the upper bits of the first byte. Always zero to look like a
                                  non-printable character*/
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_buf.h
-    uint32_t cf : 5;          /* Color format: See `lv_img_color_format_t`*/
-=======
     uint32_t cf : 5;          /*Color format: See `lv_img_color_format_t`*/
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_buf.h
 
 } lv_img_header_t;
 #else
@@ -152,51 +144,6 @@ typedef struct {
     const uint8_t * data;   /**< Pointer to the data of the image*/
 } lv_img_dsc_t;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_buf.h
-typedef struct {
-    struct {
-        const void * src;           /*image source (array of pixels)*/
-        lv_coord_t src_w;           /*width of the image source*/
-        lv_coord_t src_h;           /*height of the image source*/
-        lv_coord_t pivot_x;         /*pivot x*/
-        lv_coord_t pivot_y;         /* pivot y*/
-        int16_t angle;              /*angle to rotate*/
-        uint16_t zoom;              /*256 no zoom, 128 half size, 512 double size*/
-        lv_color_t color;           /*a color used for `LV_IMG_CF_INDEXED_1/2/4/8BIT` color formats*/
-        lv_img_cf_t cf;             /*color format of the image to rotate*/
-        bool antialias;
-    } cfg;
-
-    struct {
-        lv_color_t color;
-        lv_opa_t opa;
-    } res;
-
-    struct {
-        lv_img_dsc_t img_dsc;
-        int32_t pivot_x_256;
-        int32_t pivot_y_256;
-        int32_t sinma;
-        int32_t cosma;
-
-        uint8_t chroma_keyed : 1;
-        uint8_t has_alpha : 1;
-        uint8_t native_color : 1;
-
-        uint32_t zoom_inv;
-
-        /*Runtime data*/
-        lv_coord_t xs;
-        lv_coord_t ys;
-        lv_coord_t xs_int;
-        lv_coord_t ys_int;
-        uint32_t pxi;
-        uint8_t px_size;
-    } tmp;
-} lv_img_transform_dsc_t;
-
-=======
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_buf.h
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
@@ -279,111 +226,6 @@ void lv_img_buf_free(lv_img_dsc_t * dsc);
  */
 uint32_t lv_img_buf_get_img_size(lv_coord_t w, lv_coord_t h, lv_img_cf_t cf);
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_buf.h
-#if LV_USE_IMG_TRANSFORM
-/**
- * Initialize a descriptor to rotate an image
- * @param dsc pointer to an `lv_img_transform_dsc_t` variable whose `cfg` field is initialized
- */
-void _lv_img_buf_transform_init(lv_img_transform_dsc_t * dsc);
-
-/**
- * Continue transformation by taking the neighbors into account
- * @param dsc pointer to the transformation descriptor
- */
-bool _lv_img_buf_transform_anti_alias(lv_img_transform_dsc_t * dsc);
-
-/**
- * Get which color and opa would come to a pixel if it were rotated
- * @param dsc a descriptor initialized by `lv_img_buf_rotate_init`
- * @param x the coordinate which color and opa should be get
- * @param y the coordinate which color and opa should be get
- * @return true: there is valid pixel on these x/y coordinates; false: the rotated pixel was out of the image
- * @note the result is written back to `dsc->res_color` and `dsc->res_opa`
- */
-static inline bool _lv_img_buf_transform(lv_img_transform_dsc_t * dsc, lv_coord_t x, lv_coord_t y)
-{
-    const uint8_t * src_u8 = (const uint8_t *)dsc->cfg.src;
-
-    /*Get the target point relative coordinates to the pivot*/
-    int32_t xt = x - dsc->cfg.pivot_x;
-    int32_t yt = y - dsc->cfg.pivot_y;
-
-    int32_t xs;
-    int32_t ys;
-    if(dsc->cfg.zoom == LV_IMG_ZOOM_NONE) {
-        /*Get the source pixel from the upscaled image*/
-        xs = ((dsc->tmp.cosma * xt - dsc->tmp.sinma * yt) >> (_LV_TRANSFORM_TRIGO_SHIFT - 8)) + dsc->tmp.pivot_x_256;
-        ys = ((dsc->tmp.sinma * xt + dsc->tmp.cosma * yt) >> (_LV_TRANSFORM_TRIGO_SHIFT - 8)) + dsc->tmp.pivot_y_256;
-    }
-    else if(dsc->cfg.angle == 0) {
-        xt = (int32_t)((int32_t)xt * dsc->tmp.zoom_inv) >> _LV_ZOOM_INV_UPSCALE;
-        yt = (int32_t)((int32_t)yt * dsc->tmp.zoom_inv) >> _LV_ZOOM_INV_UPSCALE;
-        xs = xt + dsc->tmp.pivot_x_256;
-        ys = yt + dsc->tmp.pivot_y_256;
-    }
-    else {
-        xt = (int32_t)((int32_t)xt * dsc->tmp.zoom_inv) >> _LV_ZOOM_INV_UPSCALE;
-        yt = (int32_t)((int32_t)yt * dsc->tmp.zoom_inv) >> _LV_ZOOM_INV_UPSCALE;
-        xs = ((dsc->tmp.cosma * xt - dsc->tmp.sinma * yt) >> (_LV_TRANSFORM_TRIGO_SHIFT)) + dsc->tmp.pivot_x_256;
-        ys = ((dsc->tmp.sinma * xt + dsc->tmp.cosma * yt) >> (_LV_TRANSFORM_TRIGO_SHIFT)) + dsc->tmp.pivot_y_256;
-    }
-
-    /*Get the integer part of the source pixel*/
-    int32_t xs_int = xs >> 8;
-    int32_t ys_int = ys >> 8;
-
-    if(xs_int >= dsc->cfg.src_w) return false;
-    else if(xs_int < 0) return false;
-
-    if(ys_int >= dsc->cfg.src_h) return false;
-    else if(ys_int < 0) return false;
-
-    uint8_t px_size;
-    uint32_t pxi;
-    if(dsc->tmp.native_color) {
-        if(dsc->tmp.has_alpha == 0) {
-            px_size = LV_COLOR_SIZE >> 3;
-
-            pxi     = dsc->cfg.src_w * ys_int * px_size + xs_int * px_size;
-            _lv_memcpy_small(&dsc->res.color, &src_u8[pxi], px_size);
-        }
-        else {
-            px_size = LV_IMG_PX_SIZE_ALPHA_BYTE;
-            pxi     = dsc->cfg.src_w * ys_int * px_size + xs_int * px_size;
-            _lv_memcpy_small(&dsc->res.color, &src_u8[pxi], px_size - 1);
-            dsc->res.opa = src_u8[pxi + px_size - 1];
-        }
-    }
-    else {
-        pxi = 0; /*unused*/
-        px_size = 0;    /*unused*/
-        dsc->res.color = lv_img_buf_get_px_color(&dsc->tmp.img_dsc, xs_int, ys_int, dsc->cfg.color);
-        dsc->res.opa = lv_img_buf_get_px_alpha(&dsc->tmp.img_dsc, xs_int, ys_int);
-    }
-
-    if(dsc->tmp.chroma_keyed) {
-        lv_color_t ct = LV_COLOR_TRANSP;
-        if(dsc->res.color.full == ct.full) return false;
-    }
-
-    if(dsc->cfg.antialias == false) return true;
-
-    dsc->tmp.xs = xs;
-    dsc->tmp.ys = ys;
-    dsc->tmp.xs_int = xs_int;
-    dsc->tmp.ys_int = ys_int;
-    dsc->tmp.pxi = pxi;
-    dsc->tmp.px_size = px_size;
-
-    bool ret;
-    ret = _lv_img_buf_transform_anti_alias(dsc);
-
-    return ret;
-}
-#endif
-=======
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_buf.h
 /**
  * Get the area of a rectangle if its rotated and scaled
  * @param res store the coordinates here

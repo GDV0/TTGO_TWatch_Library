@@ -1377,7 +1377,4 @@ lv_font_t font_1 = {
 };
 
 #endif /*#if FONT_1*/
-<<<<<<< Updated upstream:src/lvgl/tests/lv_test_fonts/font_1.c
-=======
 #endif
->>>>>>> Stashed changes:src/lvgl/tests/src/test_fonts/font_1.c

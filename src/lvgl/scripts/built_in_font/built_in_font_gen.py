@@ -39,11 +39,7 @@ parser.add_argument('-o', '--output',
 parser.add_argument('--compressed', action='store_true',
 					help='Compress the bitmaps')
 parser.add_argument('--subpx', action='store_true',
-<<<<<<< Updated upstream
-                    help='3 times wider letters for sub pixel rendering')
-=======
 					help='3 times wider letters for sub pixel rendering')
->>>>>>> Stashed changes
 
 args = parser.parse_args()
 

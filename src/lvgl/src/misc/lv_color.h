@@ -21,13 +21,6 @@ extern "C" {
 /*Error checking*/
 #if LV_COLOR_DEPTH == 24
 #error "LV_COLOR_DEPTH 24 is deprecated. Use LV_COLOR_DEPTH 32 instead (lv_conf.h)"
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-#endif
-
-#if LV_COLOR_DEPTH != 32 && LV_COLOR_SCREEN_TRANSP != 0
-#error "LV_COLOR_SCREEN_TRANSP requires LV_COLOR_DEPTH == 32. Set it in lv_conf.h"
-=======
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
 #endif
 
 #if LV_COLOR_DEPTH != 16 && LV_COLOR_16_SWAP != 0
@@ -39,29 +32,8 @@ extern "C" {
 /*********************
  *      DEFINES
  *********************/
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-#define LV_COLOR_WHITE   LV_COLOR_MAKE(0xFF, 0xFF, 0xFF)
-#define LV_COLOR_SILVER  LV_COLOR_MAKE(0xC0, 0xC0, 0xC0)
-#define LV_COLOR_GRAY    LV_COLOR_MAKE(0x80, 0x80, 0x80)
-#define LV_COLOR_BLACK   LV_COLOR_MAKE(0x00, 0x00, 0x00)
-#define LV_COLOR_RED     LV_COLOR_MAKE(0xFF, 0x00, 0x00)
-#define LV_COLOR_MAROON  LV_COLOR_MAKE(0x80, 0x00, 0x00)
-#define LV_COLOR_YELLOW  LV_COLOR_MAKE(0xFF, 0xFF, 0x00)
-#define LV_COLOR_OLIVE   LV_COLOR_MAKE(0x80, 0x80, 0x00)
-#define LV_COLOR_LIME    LV_COLOR_MAKE(0x00, 0xFF, 0x00)
-#define LV_COLOR_GREEN   LV_COLOR_MAKE(0x00, 0x80, 0x00)
-#define LV_COLOR_CYAN    LV_COLOR_MAKE(0x00, 0xFF, 0xFF)
-#define LV_COLOR_AQUA    LV_COLOR_CYAN
-#define LV_COLOR_TEAL    LV_COLOR_MAKE(0x00, 0x80, 0x80)
-#define LV_COLOR_BLUE    LV_COLOR_MAKE(0x00, 0x00, 0xFF)
-#define LV_COLOR_NAVY    LV_COLOR_MAKE(0x00, 0x00, 0x80)
-#define LV_COLOR_MAGENTA LV_COLOR_MAKE(0xFF, 0x00, 0xFF)
-#define LV_COLOR_PURPLE  LV_COLOR_MAKE(0x80, 0x00, 0x80)
-#define LV_COLOR_ORANGE  LV_COLOR_MAKE(0xFF, 0xA5, 0x00)
-=======
 LV_EXPORT_CONST_INT(LV_COLOR_DEPTH);
 LV_EXPORT_CONST_INT(LV_COLOR_16_SWAP);
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
 
 /**
  * Opacity percentages.
@@ -97,21 +69,6 @@ enum {
 #error "Invalid LV_COLOR_DEPTH in lv_conf.h! Set it to 1, 8, 16 or 32!"
 #endif
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-/* Adjust color mix functions rounding.
- * GPUs might calculate color mix (blending) differently.
- * Should be in range of 0..254
- * 0: no adjustment, get the integer part of the result (round down)
- * 64: round up from x.75
- * 128: round up from half
- * 192: round up from x.25
- * 254: round up */
-#ifndef LV_COLOR_MIX_ROUND_OFS
-#if LV_COLOR_DEPTH == 32
-#define LV_COLOR_MIX_ROUND_OFS 0
-#else
-#define LV_COLOR_MIX_ROUND_OFS 128
-=======
 #if defined(__cplusplus) && !defined(_LV_COLOR_HAS_MODERN_CPP)
 /**
 * MSVC compiler's definition of the __cplusplus indicating 199711L regardless to C++ standard version
@@ -121,7 +78,6 @@ enum {
 #ifdef _MSC_VER
 #if _MSC_VER >= 1900 /*Visual Studio 2015*/
 #define _LV_COLOR_HAS_MODERN_CPP 1
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
 #endif
 #else
 #if __cplusplus >= 201103L
@@ -136,34 +92,6 @@ enum {
 
 #if _LV_COLOR_HAS_MODERN_CPP
 /*Fix msvc compiler error C4576 inside C++ code*/
-#define _LV_COLOR_MAKE_TYPE_HELPER lv_color_t
-#else
-#define _LV_COLOR_MAKE_TYPE_HELPER (lv_color_t)
-#endif
-
-#if defined(__cplusplus) && !defined(_LV_COLOR_HAS_MODERN_CPP)
-/**
-* MSVC compiler's definition of the __cplusplus indicating 199711L regardless to C++ standard version
-* see https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-cplusplus
-* so we use _MSC_VER macro instead of __cplusplus
-*/
-#ifdef _MSC_VER
-#if _MSC_VER >= 1900 /* Visual Studio 2015 */
-#define _LV_COLOR_HAS_MODERN_CPP 1
-#endif
-#else
-#if __cplusplus >= 201103L
-#define _LV_COLOR_HAS_MODERN_CPP 1
-#endif
-#endif
-#endif /* __cplusplus */
-
-#ifndef _LV_COLOR_HAS_MODERN_CPP
-#define _LV_COLOR_HAS_MODERN_CPP 0
-#endif
-
-#if _LV_COLOR_HAS_MODERN_CPP
-/* Fix msvc compiler error C4576 inside C++ code */
 #define _LV_COLOR_MAKE_TYPE_HELPER lv_color_t
 #else
 #define _LV_COLOR_MAKE_TYPE_HELPER (lv_color_t)
@@ -184,11 +112,7 @@ enum {
 # define LV_COLOR_GET_A1(c) 0xFF
 
 # define _LV_COLOR_ZERO_INITIALIZER1 {0x00}
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-# define LV_COLOR_MAKE1(r8, g8, b8) (_LV_COLOR_MAKE_TYPE_HELPER{(uint8_t)((b8 >> 7) | (g8 >> 7) | (r8 >> 7))})
-=======
 # define LV_COLOR_MAKE1(r8, g8, b8)  {(uint8_t)((b8 >> 7) | (g8 >> 7) | (r8 >> 7))}
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
 
 # define LV_COLOR_SET_R8(c, v) (c).ch.red = (uint8_t)((v) & 0x7U)
 # define LV_COLOR_SET_G8(c, v) (c).ch.green = (uint8_t)((v) & 0x7U)
@@ -201,11 +125,7 @@ enum {
 # define LV_COLOR_GET_A8(c) 0xFF
 
 # define _LV_COLOR_ZERO_INITIALIZER8 {{0x00, 0x00, 0x00}}
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-# define LV_COLOR_MAKE8(r8, g8, b8) (_LV_COLOR_MAKE_TYPE_HELPER{{(uint8_t)((b8 >> 6) & 0x3U), (uint8_t)((g8 >> 5) & 0x7U), (uint8_t)((r8 >> 5) & 0x7U)}})
-=======
 # define LV_COLOR_MAKE8(r8, g8, b8) {{(uint8_t)((b8 >> 6) & 0x3U), (uint8_t)((g8 >> 5) & 0x7U), (uint8_t)((r8 >> 5) & 0x7U)}}
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
 
 # define LV_COLOR_SET_R16(c, v) (c).ch.red = (uint8_t)((v) & 0x1FU)
 #if LV_COLOR_16_SWAP == 0
@@ -226,19 +146,11 @@ enum {
 # define LV_COLOR_GET_A16(c) 0xFF
 
 #if LV_COLOR_16_SWAP == 0
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-# define _LV_COLOR_ZERO_INITIALIZER16 {{0x00, 0x00, 0x00}}
-# define LV_COLOR_MAKE16(r8, g8, b8) (_LV_COLOR_MAKE_TYPE_HELPER{{(uint8_t)((b8 >> 3) & 0x1FU), (uint8_t)((g8 >> 2) & 0x3FU), (uint8_t)((r8 >> 3) & 0x1FU)}})
-#else
-# define _LV_COLOR_ZERO_INITIALIZER16 {{0x00, 0x00, 0x00, 0x00}}
-# define LV_COLOR_MAKE16(r8, g8, b8) (_LV_COLOR_MAKE_TYPE_HELPER{{(uint8_t)((g8 >> 5) & 0x7U), (uint8_t)((r8 >> 3) & 0x1FU), (uint8_t)((b8 >> 3) & 0x1FU), (uint8_t)((g8 >> 2) & 0x7U)}})
-=======
 # define _LV_COLOR_ZERO_INITIALIZER16  {{0x00, 0x00, 0x00}}
 # define LV_COLOR_MAKE16(r8, g8, b8) {{(uint8_t)((b8 >> 3) & 0x1FU), (uint8_t)((g8 >> 2) & 0x3FU), (uint8_t)((r8 >> 3) & 0x1FU)}}
 #else
 # define _LV_COLOR_ZERO_INITIALIZER16 {{0x00, 0x00, 0x00, 0x00}}
 # define LV_COLOR_MAKE16(r8, g8, b8) {{(uint8_t)((g8 >> 5) & 0x7U), (uint8_t)((r8 >> 3) & 0x1FU), (uint8_t)((b8 >> 3) & 0x1FU), (uint8_t)((g8 >> 2) & 0x7U)}}
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
 #endif
 
 # define LV_COLOR_SET_R32(c, v) (c).ch.red = (uint8_t)((v) & 0xFF)
@@ -251,13 +163,8 @@ enum {
 # define LV_COLOR_GET_B32(c) (c).ch.blue
 # define LV_COLOR_GET_A32(c) (c).ch.alpha
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-# define _LV_COLOR_ZERO_INITIALIZER32 {{0x00, 0x00, 0x00, 0x00}}
-# define LV_COLOR_MAKE32(r8, g8, b8) (_LV_COLOR_MAKE_TYPE_HELPER{{b8, g8, r8, 0xff}}) /*Fix 0xff alpha*/
-=======
 # define _LV_COLOR_ZERO_INITIALIZER32  {{0x00, 0x00, 0x00, 0x00}}
 # define LV_COLOR_MAKE32(r8, g8, b8) {{b8, g8, r8, 0xff}} /*Fix 0xff alpha*/
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
 
 /*---------------------------------------
  * Macros for the current color depth
@@ -428,17 +335,6 @@ static inline uint8_t lv_color_to8(lv_color_t color)
     return color.full;
 #elif LV_COLOR_DEPTH == 16
     lv_color8_t ret;
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-    LV_COLOR_SET_R8(ret, LV_COLOR_GET_R(color) >> 2); /* 5 - 3  = 2*/
-    LV_COLOR_SET_G8(ret, LV_COLOR_GET_G(color) >> 3); /* 6 - 3  = 3*/
-    LV_COLOR_SET_B8(ret, LV_COLOR_GET_B(color) >> 3); /* 5 - 2  = 3*/
-    return ret.full;
-#elif LV_COLOR_DEPTH == 32
-    lv_color8_t ret;
-    LV_COLOR_SET_R8(ret, LV_COLOR_GET_R(color) >> 5); /* 8 - 3  = 5*/
-    LV_COLOR_SET_G8(ret, LV_COLOR_GET_G(color) >> 5); /* 8 - 3  = 5*/
-    LV_COLOR_SET_B8(ret, LV_COLOR_GET_B(color) >> 6); /* 8 - 2  = 6*/
-=======
     LV_COLOR_SET_R8(ret, LV_COLOR_GET_R(color) >> 2); /*5 - 3  = 2*/
     LV_COLOR_SET_G8(ret, LV_COLOR_GET_G(color) >> 3); /*6 - 3  = 3*/
     LV_COLOR_SET_B8(ret, LV_COLOR_GET_B(color) >> 3); /*5 - 2  = 3*/
@@ -448,7 +344,6 @@ static inline uint8_t lv_color_to8(lv_color_t color)
     LV_COLOR_SET_R8(ret, LV_COLOR_GET_R(color) >> 5); /*8 - 3  = 5*/
     LV_COLOR_SET_G8(ret, LV_COLOR_GET_G(color) >> 5); /*8 - 3  = 5*/
     LV_COLOR_SET_B8(ret, LV_COLOR_GET_B(color) >> 6); /*8 - 2  = 6*/
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
     return ret.full;
 #endif
 }
@@ -470,15 +365,9 @@ static inline uint16_t lv_color_to16(lv_color_t color)
     return color.full;
 #elif LV_COLOR_DEPTH == 32
     lv_color16_t ret;
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-    LV_COLOR_SET_R16(ret, LV_COLOR_GET_R(color) >> 3); /* 8 - 5  = 3*/
-    LV_COLOR_SET_G16(ret, LV_COLOR_GET_G(color) >> 2); /* 8 - 6  = 2*/
-    LV_COLOR_SET_B16(ret, LV_COLOR_GET_B(color) >> 3); /* 8 - 5  = 3*/
-=======
     LV_COLOR_SET_R16(ret, LV_COLOR_GET_R(color) >> 3); /*8 - 5  = 3*/
     LV_COLOR_SET_G16(ret, LV_COLOR_GET_G(color) >> 2); /*8 - 6  = 2*/
     LV_COLOR_SET_B16(ret, LV_COLOR_GET_B(color) >> 3); /*8 - 5  = 3*/
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
     return ret.full;
 #endif
 }
@@ -605,17 +494,10 @@ LV_ATTRIBUTE_FAST_MEM static inline lv_color_t lv_color_mix_premult(uint16_t * p
 {
     lv_color_t ret;
 #if LV_COLOR_DEPTH != 1
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-    /*LV_COLOR_DEPTH == 8, 16 or 32*/
-    LV_COLOR_SET_R(ret, LV_MATH_UDIV255(premult_c1[0] + LV_COLOR_GET_R(c2) * mix + LV_COLOR_MIX_ROUND_OFS));
-    LV_COLOR_SET_G(ret, LV_MATH_UDIV255(premult_c1[1] + LV_COLOR_GET_G(c2) * mix + LV_COLOR_MIX_ROUND_OFS));
-    LV_COLOR_SET_B(ret, LV_MATH_UDIV255(premult_c1[2] + LV_COLOR_GET_B(c2) * mix + LV_COLOR_MIX_ROUND_OFS));
-=======
     /*LV_COLOR_DEPTH == 8 or 32*/
     LV_COLOR_SET_R(ret, LV_UDIV255(premult_c1[0] + LV_COLOR_GET_R(c2) * mix + LV_COLOR_MIX_ROUND_OFS));
     LV_COLOR_SET_G(ret, LV_UDIV255(premult_c1[1] + LV_COLOR_GET_G(c2) * mix + LV_COLOR_MIX_ROUND_OFS));
     LV_COLOR_SET_B(ret, LV_UDIV255(premult_c1[2] + LV_COLOR_GET_B(c2) * mix + LV_COLOR_MIX_ROUND_OFS));
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
     LV_COLOR_SET_A(ret, 0xFF);
 #else
     /*LV_COLOR_DEPTH == 1*/
@@ -748,14 +630,11 @@ static inline lv_color_t lv_color_hex3(uint32_t c)
                          (uint8_t)((c & 0xF) | ((c & 0xF) << 4)));
 }
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-=======
 static inline void lv_color_filter_dsc_init(lv_color_filter_dsc_t * dsc, lv_color_filter_cb_t cb)
 {
     dsc->filter_cb = cb;
 }
 
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
 //! @cond Doxygen_Suppress
 //!
 LV_ATTRIBUTE_FAST_MEM void lv_color_fill(lv_color_t * buf, lv_color_t color, uint32_t px_num);
@@ -792,8 +671,6 @@ lv_color_hsv_t lv_color_rgb_to_hsv(uint8_t r8, uint8_t g8, uint8_t b8);
  */
 lv_color_hsv_t lv_color_to_hsv(lv_color_t color);
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_color.h
-=======
 /**
  * Just a wrapper around LV_COLOR_CHROMA_KEY because it might be more convenient to use a function in some cases
  * @return LV_COLOR_CHROMA_KEY
@@ -820,7 +697,6 @@ static inline lv_color_t lv_color_black(void)
 lv_color_t lv_palette_lighten(lv_palette_t p, uint8_t lvl);
 lv_color_t lv_palette_darken(lv_palette_t p, uint8_t lvl);
 
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_color.h
 /**********************
  *      MACROS
  **********************/

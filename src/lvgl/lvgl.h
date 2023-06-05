@@ -13,15 +13,9 @@ extern "C" {
 /***************************
  * CURRENT VERSION OF LVGL
  ***************************/
-<<<<<<< Updated upstream
-#define LVGL_VERSION_MAJOR 7
-#define LVGL_VERSION_MINOR 11
-#define LVGL_VERSION_PATCH 0
-=======
 #define LVGL_VERSION_MAJOR 8
 #define LVGL_VERSION_MINOR 3
 #define LVGL_VERSION_PATCH 5
->>>>>>> Stashed changes
 #define LVGL_VERSION_INFO ""
 
 /*********************
@@ -69,14 +63,11 @@ extern "C" {
 
 #include "src/lv_api_map.h"
 
-<<<<<<< Updated upstream
-=======
 /*-----------------
  * EXTRAS
  *----------------*/
 #include "src/extra/lv_extra.h"
 
->>>>>>> Stashed changes
 /*********************
  *      DEFINES
  *********************/

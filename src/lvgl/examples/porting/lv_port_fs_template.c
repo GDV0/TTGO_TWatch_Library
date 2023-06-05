@@ -20,26 +20,6 @@
  *      TYPEDEFS
  **********************/
 
-<<<<<<< Updated upstream
-/* Create a type to store the required data about your file.
- * If you are using a File System library
- * it already should have a File type.
- * For example FatFS has `FIL`. In this case use `typedef FIL file_t`*/
-typedef struct {
-    /*Add the data you need to store about a file*/
-    uint32_t dummy1;
-    uint32_t dummy2;
-}file_t;
-
-/*Similarly to `file_t` create a type for directory reading too */
-typedef struct {
-    /*Add the data you need to store about directory reading*/
-    uint32_t dummy1;
-    uint32_t dummy2;
-}dir_t;
-
-=======
->>>>>>> Stashed changes
 /**********************
  *  STATIC PROTOTYPES
  **********************/
@@ -229,113 +209,26 @@ static lv_fs_res_t fs_tell(lv_fs_drv_t * drv, void * file_p, uint32_t * pos_p)
 }
 
 /**
-<<<<<<< Updated upstream
- * Delete a file
- * @param drv pointer to a driver where this function belongs
- * @param path path of the file to delete
- * @return LV_FS_RES_OK or any error from lv_fs_res_t enum
-=======
  * Initialize a 'lv_fs_dir_t' variable for directory reading
  * @param drv       pointer to a driver where this function belongs
  * @param path      path to a directory
  * @return          pointer to the directory read descriptor or NULL on error
->>>>>>> Stashed changes
  */
 static void * fs_dir_open(lv_fs_drv_t * drv, const char * path)
 {
-<<<<<<< Updated upstream
-    lv_fs_res_t res = LV_FS_RES_NOT_IMP;
-
-    /* Add your code here*/
-
-    return res;
-}
-
-/**
- * Truncate the file size to the current position of the read write pointer
- * @param drv pointer to a driver where this function belongs
- * @param file_p pointer to an 'ufs_file_t' variable. (opened with lv_fs_open )
- * @return LV_FS_RES_OK: no error, the file is read
- *         any error from lv_fs_res_t enum
- */
-static lv_fs_res_t fs_trunc (lv_fs_drv_t * drv, void * file_p)
-{
-    lv_fs_res_t res = LV_FS_RES_NOT_IMP;
-
-    /* Add your code here*/
-
-    return res;
-}
-
-/**
- * Rename a file
- * @param drv pointer to a driver where this function belongs
- * @param oldname path to the file
- * @param newname path with the new name
- * @return LV_FS_RES_OK or any error from 'fs_res_t'
- */
-static lv_fs_res_t fs_rename (lv_fs_drv_t * drv, const char * oldname, const char * newname)
-{
-    lv_fs_res_t res = LV_FS_RES_NOT_IMP;
-
-    /* Add your code here*/
-
-    return res;
-}
-
-/**
- * Get the free and total size of a driver in kB
- * @param drv pointer to a driver where this function belongs
- * @param letter the driver letter
- * @param total_p pointer to store the total size [kB]
- * @param free_p pointer to store the free size [kB]
- * @return LV_FS_RES_OK or any error from lv_fs_res_t enum
- */
-static lv_fs_res_t fs_free (lv_fs_drv_t * drv, uint32_t * total_p, uint32_t * free_p)
-{
-    lv_fs_res_t res = LV_FS_RES_NOT_IMP;
-
-    /* Add your code here*/
-
-    return res;
-}
-
-/**
- * Initialize a 'lv_fs_dir_t' variable for directory reading
- * @param drv pointer to a driver where this function belongs
- * @param rddir_p pointer to a 'lv_fs_dir_t' variable
- * @param path path to a directory
- * @return LV_FS_RES_OK or any error from lv_fs_res_t enum
- */
-static lv_fs_res_t fs_dir_open (lv_fs_drv_t * drv, void * rddir_p, const char *path)
-{
-    lv_fs_res_t res = LV_FS_RES_NOT_IMP;
-
-    /* Add your code here*/
-
-    return res;
-=======
     void * dir = NULL;
     /*Add your code here*/
     dir = ...           /*Add your code here*/
           return dir;
->>>>>>> Stashed changes
 }
 
 /**
  * Read the next filename form a directory.
  * The name of the directories will begin with '/'
-<<<<<<< Updated upstream
- * @param drv pointer to a driver where this function belongs
- * @param rddir_p pointer to an initialized 'lv_fs_dir_t' variable
- * @param fn pointer to a buffer to store the filename
- * @return LV_FS_RES_OK or any error from lv_fs_res_t enum
-=======
  * @param drv       pointer to a driver where this function belongs
  * @param rddir_p   pointer to an initialized 'lv_fs_dir_t' variable
  * @param fn        pointer to a buffer to store the filename
  * @return          LV_FS_RES_OK: no error or  any error from @lv_fs_res_t enum
->>>>>>> Stashed changes
  */
 static lv_fs_res_t fs_dir_read(lv_fs_drv_t * drv, void * rddir_p, char * fn)
 {
@@ -348,15 +241,9 @@ static lv_fs_res_t fs_dir_read(lv_fs_drv_t * drv, void * rddir_p, char * fn)
 
 /**
  * Close the directory reading
-<<<<<<< Updated upstream
- * @param drv pointer to a driver where this function belongs
- * @param rddir_p pointer to an initialized 'lv_fs_dir_t' variable
- * @return LV_FS_RES_OK or any error from lv_fs_res_t enum
-=======
  * @param drv       pointer to a driver where this function belongs
  * @param rddir_p   pointer to an initialized 'lv_fs_dir_t' variable
  * @return          LV_FS_RES_OK: no error or  any error from @lv_fs_res_t enum
->>>>>>> Stashed changes
  */
 static lv_fs_res_t fs_dir_close(lv_fs_drv_t * drv, void * rddir_p)
 {

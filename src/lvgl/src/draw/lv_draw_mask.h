@@ -42,8 +42,6 @@ enum {
 
 typedef uint8_t lv_draw_mask_res_t;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_mask.h
-=======
 typedef struct {
     void * param;
     void * custom_id;
@@ -69,7 +67,6 @@ static inline bool lv_draw_mask_is_any(const lv_area_t * a)
 
 #if LV_DRAW_COMPLEX
 
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_mask.h
 enum {
     LV_DRAW_MASK_TYPE_LINE,
     LV_DRAW_MASK_TYPE_ANGLE,
@@ -136,13 +133,8 @@ typedef struct {
     /*1: It's a flat line? (Near to horizontal)*/
     uint8_t flat : 1;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_mask.h
-    /* Invert the mask. The default is: Keep the left part.
-     * It is used to select left/right/top/bottom*/
-=======
     /*Invert the mask. The default is: Keep the left part.
      *It is used to select left/right/top/bottom*/
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_mask.h
     uint8_t inv: 1;
 } lv_draw_mask_line_param_t;
 
@@ -252,8 +244,6 @@ int16_t lv_draw_mask_add(void * param, void * custom_id);
 LV_ATTRIBUTE_FAST_MEM lv_draw_mask_res_t lv_draw_mask_apply(lv_opa_t * mask_buf, lv_coord_t abs_x, lv_coord_t abs_y,
                                                             lv_coord_t len);
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_mask.h
-=======
 /**
  * Apply the specified buffers on a line. Used internally by the library's drawing routines.
  * @param mask_buf store the result mask here. Has to be `len` byte long. Should be initialized with `0xFF`.
@@ -270,7 +260,6 @@ LV_ATTRIBUTE_FAST_MEM lv_draw_mask_res_t lv_draw_mask_apply(lv_opa_t * mask_buf,
 LV_ATTRIBUTE_FAST_MEM lv_draw_mask_res_t lv_draw_mask_apply_ids(lv_opa_t * mask_buf, lv_coord_t abs_x, lv_coord_t abs_y,
                                                                 lv_coord_t len, const int16_t * ids, int16_t ids_count);
 
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_mask.h
 //! @endcond
 
 /**
@@ -312,8 +301,6 @@ void _lv_draw_mask_cleanup(void);
  */
 LV_ATTRIBUTE_FAST_MEM uint8_t lv_draw_mask_get_cnt(void);
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_mask.h
-=======
 
 /**
  * Check if there is any added draw mask
@@ -322,7 +309,6 @@ LV_ATTRIBUTE_FAST_MEM uint8_t lv_draw_mask_get_cnt(void);
  */
 bool lv_draw_mask_is_any(const lv_area_t * a);
 
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_mask.h
 //! @endcond
 
 /**

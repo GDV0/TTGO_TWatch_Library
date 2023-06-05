@@ -55,12 +55,6 @@ LV_ATTRIBUTE_FAST_MEM void lv_draw_line_dsc_init(lv_draw_line_dsc_t * dsc);
 void lv_draw_line(struct _lv_draw_ctx_t * draw_ctx, const lv_draw_line_dsc_t * dsc, const lv_point_t * point1,
                   const lv_point_t * point2);
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_line.h
-LV_ATTRIBUTE_FAST_MEM void lv_draw_line_dsc_init(lv_draw_line_dsc_t * dsc);
-
-//! @endcond
-=======
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_line.h
 
 /**********************
  *      MACROS

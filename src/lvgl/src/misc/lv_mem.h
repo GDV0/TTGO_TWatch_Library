@@ -117,11 +117,7 @@ void lv_mem_buf_release(void * p);
 /**
  * Free all memory buffers
  */
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_mem.h
-void _lv_mem_buf_free_all(void);
-=======
 void lv_mem_buf_free_all(void);
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_mem.h
 
 //! @cond Doxygen_Suppress
 

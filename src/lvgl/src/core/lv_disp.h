@@ -80,13 +80,8 @@ lv_obj_t * lv_disp_get_layer_top(lv_disp_t * disp);
 /**
  * Return with the sys. layer. (Same on every screen and it is above the normal screen and the top
  * layer)
-<<<<<<< Updated upstream:src/lvgl/src/lv_core/lv_disp.h
- * @param disp pointer to display which sys. layer should be get. (NULL to use the default screen)
- * @return pointer to the sys layer object  (transparent screen sized lv_obj)
-=======
  * @param disp pointer to display which sys. layer should be retrieved. (NULL to use the default screen)
  * @return pointer to the sys layer object (transparent screen sized lv_obj)
->>>>>>> Stashed changes:src/lvgl/src/core/lv_disp.h
  */
 lv_obj_t * lv_disp_get_layer_sys(lv_disp_t * disp);
 
@@ -96,8 +91,6 @@ lv_obj_t * lv_disp_get_layer_sys(lv_disp_t * disp);
  */
 void lv_disp_set_theme(lv_disp_t * disp, lv_theme_t * th);
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_core/lv_disp.h
-=======
 /**
  * Get the theme of a display
  * @param disp pointer to a display
@@ -105,7 +98,6 @@ void lv_disp_set_theme(lv_disp_t * disp, lv_theme_t * th);
  */
 lv_theme_t * lv_disp_get_theme(lv_disp_t * disp);
 
->>>>>>> Stashed changes:src/lvgl/src/core/lv_disp.h
 /**
  * Set the background color of a display
  * @param disp pointer to a display
@@ -193,7 +185,7 @@ static inline lv_obj_t * lv_scr_act(void)
 }
 
 /**
- * Get the top layer of the default display
+ * Get the top layer  of the default display
  * @return pointer to the top layer
  */
 static inline lv_obj_t * lv_layer_top(void)
@@ -203,7 +195,7 @@ static inline lv_obj_t * lv_layer_top(void)
 
 /**
  * Get the active screen of the default display
- * @return pointer to the sys layer
+ * @return  pointer to the sys layer
  */
 static inline lv_obj_t * lv_layer_sys(void)
 {

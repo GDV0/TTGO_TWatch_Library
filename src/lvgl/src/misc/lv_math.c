@@ -80,11 +80,7 @@ LV_ATTRIBUTE_FAST_MEM int16_t lv_trigo_sin(int16_t angle)
  * @param u3 end values in range of [0..LV_BEZIER_VAL_MAX]
  * @return the value calculated from the given parameters in range of [0..LV_BEZIER_VAL_MAX]
  */
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_math.c
-uint32_t _lv_bezier3(uint32_t t, uint32_t u0, uint32_t u1, uint32_t u2, uint32_t u3)
-=======
 uint32_t lv_bezier3(uint32_t t, uint32_t u0, uint32_t u1, uint32_t u2, uint32_t u3)
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_math.c
 {
     uint32_t t_rem  = 1024 - t;
     uint32_t t_rem2 = (t_rem * t_rem) >> 10;
@@ -237,17 +233,10 @@ int64_t lv_pow(int64_t base, int8_t exp)
  * @param max_out max output range
  * @return the mapped number
  */
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_math.c
-int32_t _lv_map(int32_t x, int32_t min_in, int32_t max_in, int32_t min_out, int32_t max_out)
-{
-    if(x >= max_in) return max_out;
-    if(x <= min_in) return min_out;
-=======
 int32_t lv_map(int32_t x, int32_t min_in, int32_t max_in, int32_t min_out, int32_t max_out)
 {
     if(max_in >= min_in && x >= max_in) return max_out;
     if(max_in >= min_in && x <= min_in) return min_out;
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_math.c
 
     if(max_in <= min_in && x <= max_in) return max_out;
     if(max_in <= min_in && x >= min_in) return min_out;

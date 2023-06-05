@@ -103,13 +103,8 @@ lv_obj_t * lv_disp_get_layer_top(lv_disp_t * disp)
 /**
  * Return with the sys. layer. (Same on every screen and it is above the normal screen and the top
  * layer)
-<<<<<<< Updated upstream:src/lvgl/src/lv_core/lv_disp.c
- * @param disp pointer to display which sys. layer should be get. (NULL to use the default screen)
- * @return pointer to the sys layer object  (transparent screen sized lv_obj)
-=======
  * @param disp pointer to display which sys. layer should be retrieved. (NULL to use the default screen)
  * @return pointer to the sys layer object (transparent screen sized lv_obj)
->>>>>>> Stashed changes:src/lvgl/src/core/lv_disp.c
  */
 lv_obj_t * lv_disp_get_layer_sys(lv_disp_t * disp)
 {
@@ -229,15 +224,6 @@ void lv_scr_load_anim(lv_obj_t * new_scr, lv_scr_load_anim_t anim_type, uint32_t
     lv_disp_t * d = lv_obj_get_disp(new_scr);
     lv_obj_t * act_scr = lv_scr_act();
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_core/lv_disp.c
-    if(d->del_prev && act_scr != d->scr_to_load && d->scr_to_load) {
-        lv_obj_del(act_scr);
-        lv_disp_load_scr(d->scr_to_load);
-        lv_anim_del(d->scr_to_load, NULL);
-        lv_obj_set_pos(d->scr_to_load, 0, 0);
-        lv_style_remove_prop(lv_obj_get_local_style(d->scr_to_load, LV_OBJ_PART_MAIN), LV_STYLE_OPA_SCALE);
-
-=======
     /*If an other screen load animation is in progress
      *make target screen loaded immediately. */
     if(d->scr_to_load && act_scr != d->scr_to_load) {
@@ -249,7 +235,6 @@ void lv_scr_load_anim(lv_obj_t * new_scr, lv_scr_load_anim_t anim_type, uint32_t
         if(d->del_prev) {
             lv_obj_del(act_scr);
         }
->>>>>>> Stashed changes:src/lvgl/src/core/lv_disp.c
         act_scr = d->scr_to_load;
     }
 
@@ -514,8 +499,6 @@ static void opa_scale_anim(void * obj, int32_t v)
     lv_obj_set_style_opa(obj, v, 0);
 }
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_core/lv_disp.c
-=======
 static void set_x_anim(void * obj, int32_t v)
 {
     lv_obj_set_x(obj, v);
@@ -526,7 +509,6 @@ static void set_y_anim(void * obj, int32_t v)
     lv_obj_set_y(obj, v);
 }
 
->>>>>>> Stashed changes:src/lvgl/src/core/lv_disp.c
 static void scr_anim_ready(lv_anim_t * a)
 {
     lv_disp_t * d = lv_obj_get_disp(a->var);
@@ -536,10 +518,6 @@ static void scr_anim_ready(lv_anim_t * a)
 
     if(d->prev_scr && d->del_prev) lv_obj_del(d->prev_scr);
     d->prev_scr = NULL;
-<<<<<<< Updated upstream:src/lvgl/src/lv_core/lv_disp.c
-    d->scr_to_load = NULL;
-    lv_style_remove_prop(lv_obj_get_local_style(a->var, LV_OBJ_PART_MAIN), LV_STYLE_OPA_SCALE);
-=======
     d->draw_prev_over_act = false;
     d->scr_to_load = NULL;
     lv_obj_remove_local_style_prop(a->var, LV_STYLE_OPA, 0);
@@ -553,5 +531,4 @@ static bool is_out_anim(lv_scr_load_anim_t anim_type)
            anim_type == LV_SCR_LOAD_ANIM_OUT_RIGHT ||
            anim_type == LV_SCR_LOAD_ANIM_OUT_TOP   ||
            anim_type == LV_SCR_LOAD_ANIM_OUT_BOTTOM;
->>>>>>> Stashed changes:src/lvgl/src/core/lv_disp.c
 }

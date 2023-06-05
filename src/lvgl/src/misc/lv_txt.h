@@ -18,14 +18,9 @@ extern "C" {
 #include <stdbool.h>
 #include <stdarg.h>
 #include "lv_area.h"
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_txt.h
-#include "../lv_font/lv_font.h"
-#include "lv_printf.h"
-=======
 #include "../font/lv_font.h"
 #include "lv_printf.h"
 #include "lv_types.h"
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_txt.h
 
 /*********************
  *      DEFINES

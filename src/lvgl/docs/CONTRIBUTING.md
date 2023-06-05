@@ -1,9 +1,5 @@
 
-<<<<<<< Updated upstream
-Thank you for considering contributing to LVGL.
-=======
 # Contributing
->>>>>>> Stashed changes
 
 ## Introduction
 

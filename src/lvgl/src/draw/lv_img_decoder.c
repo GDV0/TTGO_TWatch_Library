@@ -7,17 +7,10 @@
  *      INCLUDES
  *********************/
 #include "lv_img_decoder.h"
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#include "../lv_misc/lv_debug.h"
-#include "../lv_draw/lv_draw_img.h"
-#include "../lv_misc/lv_ll.h"
-#include "../lv_misc/lv_gc.h"
-=======
 #include "../misc/lv_assert.h"
 #include "../draw/lv_draw_img.h"
 #include "../misc/lv_ll.h"
 #include "../misc/lv_gc.h"
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
 
 /*********************
  *      DEFINES
@@ -30,13 +23,7 @@
  **********************/
 
 typedef struct {
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#if LV_USE_FILESYSTEM
     lv_fs_file_t f;
-#endif
-=======
-    lv_fs_file_t f;
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
     lv_color_t * palette;
     lv_opa_t * opa;
 } lv_img_decoder_built_in_data_t;
@@ -74,11 +61,7 @@ void _lv_img_decoder_init(void)
 
     /*Create a decoder for the built in color format*/
     decoder = lv_img_decoder_create();
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-    LV_ASSERT_MEM(decoder);
-=======
     LV_ASSERT_MALLOC(decoder);
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
     if(decoder == NULL) {
         LV_LOG_WARN("lv_img_decoder_init: out of memory");
         return;
@@ -99,13 +82,6 @@ void _lv_img_decoder_init(void)
  */
 lv_res_t lv_img_decoder_get_info(const void * src, lv_img_header_t * header)
 {
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-    _lv_memset_00(header, sizeof(lv_img_header_t));
-
-    lv_res_t res = LV_RES_INV;
-    lv_img_decoder_t * d;
-    _LV_LL_READ(LV_GC_ROOT(_lv_img_defoder_ll), d) {
-=======
     lv_memset_00(header, sizeof(lv_img_header_t));
 
     if(src == NULL) return LV_RES_INV;
@@ -119,7 +95,6 @@ lv_res_t lv_img_decoder_get_info(const void * src, lv_img_header_t * header)
     lv_res_t res = LV_RES_INV;
     lv_img_decoder_t * d;
     _LV_LL_READ(&LV_GC_ROOT(_lv_img_decoder_ll), d) {
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
         if(d->info_cb) {
             res = d->info_cb(d, src, header);
             if(res == LV_RES_OK) break;
@@ -131,12 +106,6 @@ lv_res_t lv_img_decoder_get_info(const void * src, lv_img_header_t * header)
 
 lv_res_t lv_img_decoder_open(lv_img_decoder_dsc_t * dsc, const void * src, lv_color_t color, int32_t frame_id)
 {
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-    _lv_memset_00(dsc, sizeof(lv_img_decoder_dsc_t));
-
-    dsc->color    = color;
-    dsc->src_type = lv_img_src_get_type(src);
-=======
     lv_memset_00(dsc, sizeof(lv_img_decoder_dsc_t));
 
     if(src == NULL) return LV_RES_INV;
@@ -149,16 +118,11 @@ lv_res_t lv_img_decoder_open(lv_img_decoder_dsc_t * dsc, const void * src, lv_co
     dsc->color    = color;
     dsc->src_type = src_type;
     dsc->frame_id = frame_id;
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
 
     if(dsc->src_type == LV_IMG_SRC_FILE) {
         size_t fnlen = strlen(src);
         dsc->src = lv_mem_alloc(fnlen + 1);
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-        LV_ASSERT_MEM(dsc->src);
-=======
         LV_ASSERT_MALLOC(dsc->src);
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
         if(dsc->src == NULL) {
             LV_LOG_WARN("lv_img_decoder_open: out of memory");
             return LV_RES_INV;
@@ -171,31 +135,14 @@ lv_res_t lv_img_decoder_open(lv_img_decoder_dsc_t * dsc, const void * src, lv_co
 
     lv_res_t res = LV_RES_INV;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-    lv_img_decoder_t * d;
-    _LV_LL_READ(LV_GC_ROOT(_lv_img_defoder_ll), d) {
-        /*Info and Open callbacks are required*/
-        if(d->info_cb == NULL || d->open_cb == NULL) continue;
-=======
     lv_img_decoder_t * decoder;
     _LV_LL_READ(&LV_GC_ROOT(_lv_img_decoder_ll), decoder) {
         /*Info and Open callbacks are required*/
         if(decoder->info_cb == NULL || decoder->open_cb == NULL) continue;
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
 
         res = decoder->info_cb(decoder, src, &dsc->header);
         if(res != LV_RES_OK) continue;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-        dsc->decoder = d;
-        res = d->open_cb(d, dsc);
-
-        /*Opened successfully. It is a good decoder to for this image source*/
-        if(res == LV_RES_OK) return res;
-
-        /*Prepare for the next loop*/
-        _lv_memset_00(&dsc->header, sizeof(lv_img_header_t));
-=======
         dsc->decoder = decoder;
         res = decoder->open_cb(decoder, dsc);
 
@@ -204,7 +151,6 @@ lv_res_t lv_img_decoder_open(lv_img_decoder_dsc_t * dsc, const void * src, lv_co
 
         /*Prepare for the next loop*/
         lv_memset_00(&dsc->header, sizeof(lv_img_header_t));
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
 
         dsc->error_msg = NULL;
         dsc->img_data  = NULL;
@@ -213,11 +159,7 @@ lv_res_t lv_img_decoder_open(lv_img_decoder_dsc_t * dsc, const void * src, lv_co
     }
 
     if(dsc->src_type == LV_IMG_SRC_FILE)
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-        lv_mem_free(dsc->src);
-=======
         lv_mem_free((void *)dsc->src);
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
 
     return res;
 }
@@ -345,15 +287,8 @@ lv_res_t lv_img_decoder_built_in_info(lv_img_decoder_t * decoder, const void * s
         /*Support only "*.bin" files*/
         if(strcmp(lv_fs_get_ext(src), "bin")) return LV_RES_INV;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-        lv_fs_file_t file;
-        lv_fs_res_t res;
-        uint32_t rn;
-        res = lv_fs_open(&file, src, LV_FS_MODE_RD);
-=======
         lv_fs_file_t f;
         lv_fs_res_t res = lv_fs_open(&f, src, LV_FS_MODE_RD);
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
         if(res == LV_FS_RES_OK) {
             uint32_t rn;
             res = lv_fs_read(&f, header, sizeof(lv_img_header_t), &rn);
@@ -392,10 +327,6 @@ lv_res_t lv_img_decoder_built_in_open(lv_img_decoder_t * decoder, lv_img_decoder
 {
     /*Open the file if it's a file*/
     if(dsc->src_type == LV_IMG_SRC_FILE) {
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#if LV_USE_FILESYSTEM
-=======
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
         /*Support only "*.bin" files*/
         if(strcmp(lv_fs_get_ext(dsc->src), "bin")) return LV_RES_INV;
 
@@ -419,15 +350,7 @@ lv_res_t lv_img_decoder_built_in_open(lv_img_decoder_t * decoder, lv_img_decoder
         }
 
         lv_img_decoder_built_in_data_t * user_data = dsc->user_data;
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-        _lv_memcpy_small(&user_data->f, &f, sizeof(f));
-#else
-        LV_LOG_WARN("Image built-in decoder cannot read file because LV_USE_FILESYSTEM = 0");
-        return LV_RES_INV;
-#endif
-=======
         lv_memcpy_small(&user_data->f, &f, sizeof(f));
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
     }
     else if(dsc->src_type == LV_IMG_SRC_VARIABLE) {
         /*The variables should have valid data*/
@@ -455,10 +378,6 @@ lv_res_t lv_img_decoder_built_in_open(lv_img_decoder_t * decoder, lv_img_decoder
     /*Process indexed images. Build a palette*/
     else if(cf == LV_IMG_CF_INDEXED_1BIT || cf == LV_IMG_CF_INDEXED_2BIT || cf == LV_IMG_CF_INDEXED_4BIT ||
             cf == LV_IMG_CF_INDEXED_8BIT) {
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#if LV_IMG_CF_INDEXED
-=======
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
         uint8_t px_size       = lv_img_cf_get_px_size(cf);
         uint32_t palette_size = 1 << px_size;
 
@@ -486,12 +405,7 @@ lv_res_t lv_img_decoder_built_in_open(lv_img_decoder_t * decoder, lv_img_decoder
 
         if(dsc->src_type == LV_IMG_SRC_FILE) {
             /*Read the palette from file*/
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#if LV_USE_FILESYSTEM
-            lv_fs_seek(&user_data->f, 4); /*Skip the header*/
-=======
             lv_fs_seek(&user_data->f, 4, LV_FS_SEEK_SET); /*Skip the header*/
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
             lv_color32_t cur_color;
             uint32_t i;
             for(i = 0; i < palette_size; i++) {
@@ -512,29 +426,10 @@ lv_res_t lv_img_decoder_built_in_open(lv_img_decoder_t * decoder, lv_img_decoder
         }
 
         return LV_RES_OK;
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#else
-        LV_LOG_WARN("Indexed (palette) images are not enabled in lv_conf.h. See LV_IMG_CF_INDEXED");
-        lv_img_decoder_built_in_close(decoder, dsc);
-        return LV_RES_INV;
-#endif
-    }
-    /*Alpha indexed images. */
-    else if(cf == LV_IMG_CF_ALPHA_1BIT || cf == LV_IMG_CF_ALPHA_2BIT || cf == LV_IMG_CF_ALPHA_4BIT ||
-            cf == LV_IMG_CF_ALPHA_8BIT) {
-#if LV_IMG_CF_ALPHA
-        return LV_RES_OK; /*Nothing to process*/
-#else
-        LV_LOG_WARN("Alpha indexed images are not enabled in lv_conf.h. See LV_IMG_CF_ALPHA");
-        lv_img_decoder_built_in_close(decoder, dsc);
-        return LV_RES_INV;
-#endif
-=======
     }
     /*Alpha indexed images.*/
     else if(cf == LV_IMG_CF_ALPHA_1BIT || cf == LV_IMG_CF_ALPHA_2BIT || cf == LV_IMG_CF_ALPHA_4BIT) {
         return LV_RES_OK; /*Nothing to process*/
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
     }
     /*Unknown format. Can't decode it.*/
     else {
@@ -599,16 +494,9 @@ void lv_img_decoder_built_in_close(lv_img_decoder_t * decoder, lv_img_decoder_ds
 
     lv_img_decoder_built_in_data_t * user_data = dsc->user_data;
     if(user_data) {
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#if LV_USE_FILESYSTEM
-        if(dsc->src_type == LV_IMG_SRC_FILE)
-            lv_fs_close(&user_data->f);
-#endif
-=======
         if(dsc->src_type == LV_IMG_SRC_FILE) {
             lv_fs_close(&user_data->f);
         }
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
         if(user_data->palette) lv_mem_free(user_data->palette);
         if(user_data->opa) lv_mem_free(user_data->opa);
 
@@ -630,11 +518,7 @@ static lv_res_t lv_img_decoder_built_in_line_true_color(lv_img_decoder_dsc_t * d
 
     uint32_t pos = ((y * dsc->header.w + x) * px_size) >> 3;
     pos += 4; /*Skip the header*/
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-    res = lv_fs_seek(&user_data->f, pos);
-=======
     res = lv_fs_seek(&user_data->f, pos, LV_FS_SEEK_SET);
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
     if(res != LV_FS_RES_OK) {
         LV_LOG_WARN("Built-in image decoder seek failed");
         return LV_RES_INV;
@@ -653,10 +537,6 @@ static lv_res_t lv_img_decoder_built_in_line_true_color(lv_img_decoder_dsc_t * d
 static lv_res_t lv_img_decoder_built_in_line_alpha(lv_img_decoder_dsc_t * dsc, lv_coord_t x, lv_coord_t y,
                                                    lv_coord_t len, uint8_t * buf)
 {
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#if LV_IMG_CF_ALPHA
-=======
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
     const lv_opa_t alpha1_opa_table[2]  = {0, 255};          /*Opacity mapping with bpp = 1 (Just for compatibility)*/
     const lv_opa_t alpha2_opa_table[4]  = {0, 85, 170, 255}; /*Opacity mapping with bpp = 2*/
     const lv_opa_t alpha4_opa_table[16] = {0,  17, 34,  51,  /*Opacity mapping with bpp = 4*/
@@ -714,14 +594,8 @@ static lv_res_t lv_img_decoder_built_in_line_alpha(lv_img_decoder_dsc_t * dsc, l
     }
 
     lv_img_decoder_built_in_data_t * user_data = dsc->user_data;
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-    uint8_t * fs_buf = _lv_mem_buf_get(w);
-    if(fs_buf == NULL) return LV_RES_INV;
-#endif
-=======
     uint8_t * fs_buf = lv_mem_buf_get(w);
     if(fs_buf == NULL) return LV_RES_INV;
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
 
     const uint8_t * data_tmp = NULL;
     if(dsc->src_type == LV_IMG_SRC_VARIABLE) {
@@ -730,12 +604,7 @@ static lv_res_t lv_img_decoder_built_in_line_alpha(lv_img_decoder_dsc_t * dsc, l
         data_tmp = img_dsc->data + ofs;
     }
     else {
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#if LV_USE_FILESYSTEM
-        lv_fs_seek(&user_data->f, ofs + 4); /*+4 to skip the header*/
-=======
         lv_fs_seek(&user_data->f, ofs + 4, LV_FS_SEEK_SET); /*+4 to skip the header*/
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
         lv_fs_read(&user_data->f, fs_buf, w, NULL);
         data_tmp = fs_buf;
     }
@@ -754,22 +623,11 @@ static lv_res_t lv_img_decoder_built_in_line_alpha(lv_img_decoder_dsc_t * dsc, l
     }
     lv_mem_buf_release(fs_buf);
     return LV_RES_OK;
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#else
-    LV_LOG_WARN("Image built-in alpha line reader failed because LV_IMG_CF_ALPHA is 0 in lv_conf.h");
-    return LV_RES_INV;
-#endif
-=======
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
 }
 
 static lv_res_t lv_img_decoder_built_in_line_indexed(lv_img_decoder_dsc_t * dsc, lv_coord_t x, lv_coord_t y,
                                                      lv_coord_t len, uint8_t * buf)
 {
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#if LV_IMG_CF_INDEXED
-=======
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
     uint8_t px_size = lv_img_cf_get_px_size(dsc->header.cf);
     uint16_t mask   = (1 << px_size) - 1; /*E.g. px_size = 2; mask = 0x03*/
 
@@ -805,27 +663,15 @@ static lv_res_t lv_img_decoder_built_in_line_indexed(lv_img_decoder_dsc_t * dsc,
 
     lv_img_decoder_built_in_data_t * user_data = dsc->user_data;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#if LV_USE_FILESYSTEM
-    uint8_t * fs_buf = _lv_mem_buf_get(w);
-    if(fs_buf == NULL) return LV_RES_INV;
-#endif
-=======
     uint8_t * fs_buf = lv_mem_buf_get(w);
     if(fs_buf == NULL) return LV_RES_INV;
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
     const uint8_t * data_tmp = NULL;
     if(dsc->src_type == LV_IMG_SRC_VARIABLE) {
         const lv_img_dsc_t * img_dsc = dsc->src;
         data_tmp                     = img_dsc->data + ofs;
     }
     else {
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.c
-#if LV_USE_FILESYSTEM
-        lv_fs_seek(&user_data->f, ofs + 4); /*+4 to skip the header*/
-=======
         lv_fs_seek(&user_data->f, ofs + 4, LV_FS_SEEK_SET); /*+4 to skip the header*/
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.c
         lv_fs_read(&user_data->f, fs_buf, w, NULL);
         data_tmp = fs_buf;
     }

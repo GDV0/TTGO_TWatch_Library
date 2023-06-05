@@ -7,10 +7,6 @@
  *      INCLUDES
  *********************/
 #include "lv_gc.h"
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_gc.c
-#include "string.h"
-=======
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_gc.c
 
 /*********************
  *      DEFINES

@@ -19,13 +19,6 @@ extern "C" {
  *      DEFINES
  *********************/
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_types.h
-#if defined(__cplusplus) || __STDC_VERSION__ >= 199901L  // If c99 or newer, use stdint.h to determine arch size
-#include <stdint.h>
-#endif
-
-=======
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_types.h
 // If __UINTPTR_MAX__ or UINTPTR_MAX are available, use them to determine arch size
 #if defined(__UINTPTR_MAX__) && __UINTPTR_MAX__ > 0xFFFFFFFF
 #define LV_ARCH_64
@@ -93,12 +86,6 @@ typedef uint32_t lv_uintptr_t;
 #else
 #define LV_FORMAT_ATTRIBUTE(fmtstr, vararg)
 #endif
-
-#define _LV_CONCAT(x, y) x ## y
-#define LV_CONCAT(x, y) _LV_CONCAT(x, y)
-
-#define _LV_CONCAT3(x, y, z) x ## y ## z
-#define LV_CONCAT3(x, y, z) _LV_CONCAT3(x, y, z)
 
 #ifdef __cplusplus
 } /*extern "C"*/

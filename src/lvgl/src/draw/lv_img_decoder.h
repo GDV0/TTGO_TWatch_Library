@@ -17,16 +17,9 @@ extern "C" {
 
 #include <stdint.h>
 #include "lv_img_buf.h"
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_img_decoder.h
-#include "../lv_misc/lv_fs.h"
-#include "../lv_misc/lv_types.h"
-#include "../lv_misc/lv_area.h"
-#include "../lv_misc/lv_color.h"
-=======
 #include "../misc/lv_fs.h"
 #include "../misc/lv_types.h"
 #include "../misc/lv_area.h"
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_img_decoder.h
 
 /*********************
  *      DEFINES

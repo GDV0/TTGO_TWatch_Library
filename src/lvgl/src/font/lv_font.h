@@ -24,12 +24,9 @@ extern "C" {
 /*********************
  *      DEFINES
  *********************/
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font.h
-=======
 
 /* imgfont identifier */
 #define LV_IMGFONT_BPP 9
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font.h
 
 /**********************
  *      TYPEDEFS
@@ -42,29 +39,18 @@ extern "C" {
 struct _lv_font_t;
 /** Describes the properties of a glyph.*/
 typedef struct {
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font.h
-    uint16_t adv_w; /**< The glyph needs this space. Draw the next glyph after this width. */
-    uint16_t box_w;  /**< Width of the glyph's bounding box*/
-    uint16_t box_h;  /**< Height of the glyph's bounding box*/
-    int16_t ofs_x;   /**< x offset of the bounding box*/
-=======
     const struct _lv_font_t *
         resolved_font; /**< Pointer to a font where the glyph was actually found after handling fallbacks*/
     uint16_t adv_w; /**< The glyph needs this space. Draw the next glyph after this width.*/
     uint16_t box_w; /**< Width of the glyph's bounding box*/
     uint16_t box_h; /**< Height of the glyph's bounding box*/
     int16_t ofs_x;  /**< x offset of the bounding box*/
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font.h
     int16_t ofs_y;  /**< y offset of the bounding box*/
     uint8_t bpp: 4;  /**< Bit-per-pixel: 1, 2, 4, 8*/
     uint8_t is_placeholder: 1; /** Glyph is missing. But placeholder will still be displayed */
 } lv_font_glyph_dsc_t;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font.h
-/** The bitmaps might be upscaled by 3 to achieve subpixel rendering. */
-=======
 /** The bitmaps might be upscaled by 3 to achieve subpixel rendering.*/
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font.h
 enum {
     LV_FONT_SUBPX_NONE,
     LV_FONT_SUBPX_HOR,
@@ -75,15 +61,9 @@ enum {
 typedef uint8_t lv_font_subpx_t;
 
 /** Describe the properties of a font*/
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font.h
-typedef struct _lv_font_struct {
-    /** Get a glyph's descriptor from a font*/
-    bool (*get_glyph_dsc)(const struct _lv_font_struct *, lv_font_glyph_dsc_t *, uint32_t letter, uint32_t letter_next);
-=======
 typedef struct _lv_font_t {
     /** Get a glyph's descriptor from a font*/
     bool (*get_glyph_dsc)(const struct _lv_font_t *, lv_font_glyph_dsc_t *, uint32_t letter, uint32_t letter_next);
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font.h
 
     /** Get a glyph's bitmap from a font*/
     const uint8_t * (*get_glyph_bitmap)(const struct _lv_font_t *, uint32_t);
@@ -101,10 +81,6 @@ typedef struct _lv_font_t {
 #if LV_USE_USER_DATA
     void * user_data;               /**< Custom user data for font.*/
 #endif
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font.h
-
-=======
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font.h
 } lv_font_t;
 
 /**********************
@@ -114,11 +90,7 @@ typedef struct _lv_font_t {
 /**
  * Return with the bitmap of a font.
  * @param font_p pointer to a font
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font.h
- * @param letter an UNICODE character code
-=======
  * @param letter a UNICODE character code
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font.h
  * @return pointer to the bitmap of the letter
  */
 const uint8_t * lv_font_get_glyph_bitmap(const lv_font_t * font_p, uint32_t letter);
@@ -250,10 +222,6 @@ LV_FONT_DECLARE(lv_font_montserrat_12_subpx)
 
 #if LV_FONT_MONTSERRAT_28_COMPRESSED
 LV_FONT_DECLARE(lv_font_montserrat_28_compressed)
-#endif
-
-#if LV_FONT_UNSCII_16
-LV_FONT_DECLARE(lv_font_unscii_16)
 #endif
 
 #if LV_FONT_DEJAVU_16_PERSIAN_HEBREW

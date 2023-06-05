@@ -117,13 +117,8 @@ void lv_txt_get_size(lv_point_t * size_res, const char * text, const lv_font_t *
         }
 
         /*Calculate the longest line*/
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_txt.c
-        lv_coord_t act_line_length = _lv_txt_get_width(&text[line_start], new_line_start - line_start, font, letter_space,
-                                                       flag);
-=======
         lv_coord_t act_line_length = lv_txt_get_width(&text[line_start], new_line_start - line_start, font, letter_space,
                                                       flag);
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_txt.c
 
         size_res->x = LV_MAX(act_line_length, size_res->x);
         line_start  = new_line_start;
@@ -224,15 +219,9 @@ static uint32_t lv_txt_get_next_word(const char * txt, const lv_font_t * font,
         }
 
         /*Check for new line chars and breakchars*/
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_txt.c
-        if(letter == '\n' || letter == '\r' || is_break_char(letter)) {
-            /* Update the output width on the first character if it fits.
-             * Must do this here in case first letter is a break character. */
-=======
         if(letter == '\n' || letter == '\r' || _lv_txt_is_break_char(letter)) {
             /*Update the output width on the first character if it fits.
              *Must do this here in case first letter is a break character.*/
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_txt.c
             if(i == 0 && break_index == NO_BREAK_FOUND && word_w_ptr != NULL) *word_w_ptr = cur_w;
             word_len--;
             break;
@@ -390,19 +379,7 @@ lv_coord_t lv_txt_get_width(const char * txt, uint32_t length, const lv_font_t *
     return width;
 }
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_txt.c
-/**
- * Check next character in a string and decide if the character is part of the command or not
- * @param state pointer to a txt_cmd_state_t variable which stores the current state of command
- * processing (Inited to TXT_CMD_STATE_WAIT )
- * @param c the current character
- * @return true: the character is part of a command and should not be written,
- *         false: the character should be written
- */
-bool _lv_txt_is_cmd(lv_txt_cmd_state_t * state, uint32_t c)
-=======
 bool _lv_txt_is_cmd(lv_text_cmd_state_t * state, uint32_t c)
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_txt.c
 {
     bool ret = false;
 
@@ -580,7 +557,7 @@ static uint32_t lv_txt_unicode_to_utf8(uint32_t letter_uni)
 
 /**
  * Convert a wide character, e.g. 'Á' little endian to be UTF-8 compatible
- * @param c a wide character or a Little endian number
+ * @param c a wide character or a  Little endian number
  * @return `c` in big endian
  */
 static uint32_t lv_txt_utf8_conv_wc(uint32_t c)

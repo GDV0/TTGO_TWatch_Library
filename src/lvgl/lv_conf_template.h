@@ -1,10 +1,6 @@
 /**
  * @file lv_conf.h
-<<<<<<< Updated upstream
- * Configuration file for v7.11.0
-=======
  * Configuration file for v8.3.5
->>>>>>> Stashed changes
  */
 
 /*
@@ -45,9 +41,6 @@
 /*Images pixels with this color will not be drawn if they are chroma keyed)*/
 #define LV_COLOR_CHROMA_KEY lv_color_hex(0x00ff00)         /*pure green*/
 
-/* Maximum buffer size to allocate for rotation. Only used if software rotation is enabled. */
-#define LV_DISP_ROT_MAX_BUF  (10U * 1024U)
-
 /*=========================
    MEMORY SETTINGS
  *=========================*/
@@ -58,10 +51,6 @@
     /*Size of the memory available for `lv_mem_alloc()` in bytes (>= 2kB)*/
     #define LV_MEM_SIZE (48U * 1024U)          /*[bytes]*/
 
-<<<<<<< Updated upstream
-/* Compiler prefix for a big array declaration */
-#  define LV_MEM_ATTR
-=======
     /*Set an address for the memory pool instead of allocating it as a normal array. Can be in external SRAM too.*/
     #define LV_MEM_ADR 0     /*0: unused*/
     /*Instead of an address give a memory allocator that will be called to get a memory pool for LVGL. E.g. my_malloc*/
@@ -69,7 +58,6 @@
         #undef LV_MEM_POOL_INCLUDE
         #undef LV_MEM_POOL_ALLOC
     #endif
->>>>>>> Stashed changes
 
 #else       /*LV_MEM_CUSTOM*/
     #define LV_MEM_CUSTOM_INCLUDE <stdlib.h>   /*Header for the dynamic memory function*/
@@ -85,148 +73,8 @@
 /*Use the standard `memcpy` and `memset` instead of LVGL's own functions. (Might or might not be faster).*/
 #define LV_MEMCPY_MEMSET_STD 0
 
-<<<<<<< Updated upstream
-/*=======================
-   Input device settings
- *=======================*/
-
-/* Input device default settings.
- * Can be changed in the Input device driver (`lv_indev_drv_t`)*/
-
-/* Input device read period in milliseconds */
-#define LV_INDEV_DEF_READ_PERIOD          30
-
-/* Drag threshold in pixels */
-#define LV_INDEV_DEF_DRAG_LIMIT           10
-
-/* Drag throw slow-down in [%]. Greater value -> faster slow-down */
-#define LV_INDEV_DEF_DRAG_THROW           10
-
-/* Long press time in milliseconds.
- * Time to send `LV_EVENT_LONG_PRESSED`) */
-#define LV_INDEV_DEF_LONG_PRESS_TIME      400
-
-/* Repeated trigger period in long press [ms]
- * Time between `LV_EVENT_LONG_PRESSED_REPEAT */
-#define LV_INDEV_DEF_LONG_PRESS_REP_TIME  100
-
-/* Gesture threshold in pixels */
-#define LV_INDEV_DEF_GESTURE_LIMIT        50
-
-/* Gesture min velocity at release before swipe (pixels)*/
-#define LV_INDEV_DEF_GESTURE_MIN_VELOCITY 3
-
-/*==================
- * Feature usage
- *==================*/
-
-/*1: Enable the Animations */
-#define LV_USE_ANIMATION        1
-#if LV_USE_ANIMATION
-
-/*Declare the type of the user data of animations (can be e.g. `void *`, `int`, `struct`)*/
-typedef void * lv_anim_user_data_t;
-
-#endif
-
-/* 1: Enable shadow drawing on rectangles*/
-#define LV_USE_SHADOW           1
-#if LV_USE_SHADOW
-/* Allow buffering some shadow calculation
- * LV_SHADOW_CACHE_SIZE is the max. shadow size to buffer,
- * where shadow size is `shadow_width + radius`
- * Caching has LV_SHADOW_CACHE_SIZE^2 RAM cost*/
-#define LV_SHADOW_CACHE_SIZE    0
-#endif
-
-/*1: enable outline drawing on rectangles*/
-#define LV_USE_OUTLINE  1
-
-/*1: enable pattern drawing on rectangles*/
-#define LV_USE_PATTERN  1
-
-/*1: enable value string drawing on rectangles*/
-#define LV_USE_VALUE_STR    1
-
-/* 1: Use other blend modes than normal (`LV_BLEND_MODE_...`)*/
-#define LV_USE_BLEND_MODES      1
-
-/* 1: Use the `opa_scale` style property to set the opacity of an object and its children at once*/
-#define LV_USE_OPA_SCALE        1
-
-/* 1: Use image zoom and rotation*/
-#define LV_USE_IMG_TRANSFORM    1
-
-/* 1: Enable object groups (for keyboard/encoder navigation) */
-#define LV_USE_GROUP            1
-#if LV_USE_GROUP
-typedef void * lv_group_user_data_t;
-#endif  /*LV_USE_GROUP*/
-
-/* 1: Enable GPU interface*/
-#define LV_USE_GPU              1   /*Only enables `gpu_fill_cb` and `gpu_blend_cb` in the disp. drv- */
-#define LV_USE_GPU_STM32_DMA2D  0
-/*If enabling LV_USE_GPU_STM32_DMA2D, LV_GPU_DMA2D_CMSIS_INCLUDE must be defined to include path of CMSIS header of target processor
-e.g. "stm32f769xx.h" or "stm32f429xx.h" */
-#define LV_GPU_DMA2D_CMSIS_INCLUDE
-
-/*1: Use PXP for CPU off-load on NXP RTxxx platforms */
-#define LV_USE_GPU_NXP_PXP      0
-
-/*1: Add default bare metal and FreeRTOS interrupt handling routines for PXP (lv_gpu_nxp_pxp_osa.c)
- *   and call lv_gpu_nxp_pxp_init() automatically during lv_init(). Note that symbol FSL_RTOS_FREE_RTOS
- *   has to be defined in order to use FreeRTOS OSA, otherwise bare-metal implementation is selected.
- *0: lv_gpu_nxp_pxp_init() has to be called manually before lv_init()
- * */
-#define LV_USE_GPU_NXP_PXP_AUTO_INIT 0
-
-/*1: Use VG-Lite for CPU offload on NXP RTxxx platforms */
-#define LV_USE_GPU_NXP_VG_LITE   0
-
-/* 1: Enable file system (might be required for images */
-#define LV_USE_FILESYSTEM       1
-#if LV_USE_FILESYSTEM
-/*Declare the type of the user data of file system drivers (can be e.g. `void *`, `int`, `struct`)*/
-typedef void * lv_fs_drv_user_data_t;
-#endif
-
-/*1: Add a `user_data` to drivers and objects*/
-#define LV_USE_USER_DATA        0
-
-/*1: Show CPU usage and FPS count in the right bottom corner*/
-#define LV_USE_PERF_MONITOR     0
-
-/*1: Use the functions and types from the older API if possible */
-#define LV_USE_API_EXTENSION_V6  1
-#define LV_USE_API_EXTENSION_V7  1
-
-/*========================
- * Image decoder and cache
- *========================*/
-
-/* 1: Enable indexed (palette) images */
-#define LV_IMG_CF_INDEXED       1
-
-/* 1: Enable alpha indexed images */
-#define LV_IMG_CF_ALPHA         1
-
-/* Default image cache size. Image caching keeps the images opened.
- * If only the built-in image formats are used there is no real advantage of caching.
- * (I.e. no new image decoder is added)
- * With complex image decoders (e.g. PNG or JPG) caching can save the continuous open/decode of images.
- * However the opened images might consume additional RAM.
- * Set it to 0 to disable caching */
-#define LV_IMG_CACHE_DEF_SIZE       1
-
-/*Declare the type of the user data of image decoder (can be e.g. `void *`, `int`, `struct`)*/
-typedef void * lv_img_decoder_user_data_t;
-
-/*=====================
- *  Compiler settings
-=======
 /*====================
    HAL SETTINGS
->>>>>>> Stashed changes
  *====================*/
 
 /*Default display refresh period. LVG will redraw changed areas with this period time*/
@@ -268,13 +116,6 @@ typedef void * lv_img_decoder_user_data_t;
     *Caching has LV_SHADOW_CACHE_SIZE^2 RAM cost*/
     #define LV_SHADOW_CACHE_SIZE 0
 
-<<<<<<< Updated upstream
-/* If Debug is enabled LittelvGL validates the parameters of the functions.
- * If an invalid parameter is found an error log message is printed and
- * the MCU halts at the error. (`LV_USE_LOG` should be enabled)
- * If you are debugging the MCU you can pause
- * the debugger to see exactly where the issue is.
-=======
     /* Set number of maximally cached circle data.
     * The circumference of 1/4 circle are saved for anti-aliasing
     * radius * 4 bytes are used per circle (the most often used radiuses are saved)
@@ -287,7 +128,6 @@ typedef void * lv_img_decoder_user_data_t;
  * and blend it as an image with the given opacity.
  * Note that `bg_opa`, `text_opa` etc don't require buffering into layer)
  * The widget can be buffered in smaller chunks to avoid using large buffers.
->>>>>>> Stashed changes
  *
  * - LV_LAYER_SIMPLE_BUF_SIZE: [bytes] the optimal target buffer size. LVGL will try to allocate it
  * - LV_LAYER_SIMPLE_FALLBACK_BUF_SIZE: [bytes]  used if `LV_LAYER_SIMPLE_BUF_SIZE` couldn't be allocated.
@@ -317,93 +157,6 @@ typedef void * lv_img_decoder_user_data_t;
  *0 mean no caching.*/
 #define LV_GRAD_CACHE_DEF_SIZE 0
 
-<<<<<<< Updated upstream
-/* Check the strings.
- * Search for NULL, very long strings, invalid characters, and unnatural repetitions. (Slow)
- * If disabled `LV_USE_ASSERT_NULL` will be performed instead (if it's enabled) */
-#define LV_USE_ASSERT_STR       0
-
-/* Check NULL, the object's type and existence (e.g. not deleted). (Quite slow)
- * If disabled `LV_USE_ASSERT_NULL` will be performed instead (if it's enabled) */
-#define LV_USE_ASSERT_OBJ       0
-
-/*Check if the styles are properly initialized. (Fast)*/
-#define LV_USE_ASSERT_STYLE     0
-
-#endif /*LV_USE_DEBUG*/
-
-/*==================
- *    FONT USAGE
- *===================*/
-
-/* The built-in fonts contains the ASCII range and some Symbols with 4 bit-per-pixel.
- * The symbols are available via `LV_SYMBOL_...` defines
- * More info about fonts: https://docs.lvgl.io/v7/en/html/overview/font.html
- * To create a new font go to: https://lvgl.com/ttf-font-to-c-array
- */
-
-/* Montserrat fonts with bpp = 4
- * https://fonts.google.com/specimen/Montserrat  */
-#define LV_FONT_MONTSERRAT_8     0
-#define LV_FONT_MONTSERRAT_10    0
-#define LV_FONT_MONTSERRAT_12    0
-#define LV_FONT_MONTSERRAT_14    1
-#define LV_FONT_MONTSERRAT_16    0
-#define LV_FONT_MONTSERRAT_18    0
-#define LV_FONT_MONTSERRAT_20    0
-#define LV_FONT_MONTSERRAT_22    0
-#define LV_FONT_MONTSERRAT_24    0
-#define LV_FONT_MONTSERRAT_26    0
-#define LV_FONT_MONTSERRAT_28    0
-#define LV_FONT_MONTSERRAT_30    0
-#define LV_FONT_MONTSERRAT_32    0
-#define LV_FONT_MONTSERRAT_34    0
-#define LV_FONT_MONTSERRAT_36    0
-#define LV_FONT_MONTSERRAT_38    0
-#define LV_FONT_MONTSERRAT_40    0
-#define LV_FONT_MONTSERRAT_42    0
-#define LV_FONT_MONTSERRAT_44    0
-#define LV_FONT_MONTSERRAT_46    0
-#define LV_FONT_MONTSERRAT_48    0
-
-/* Demonstrate special features */
-#define LV_FONT_MONTSERRAT_12_SUBPX      0
-#define LV_FONT_MONTSERRAT_28_COMPRESSED 0  /*bpp = 3*/
-#define LV_FONT_DEJAVU_16_PERSIAN_HEBREW 0  /*Hebrew, Arabic, PErisan letters and all their forms*/
-#define LV_FONT_SIMSUN_16_CJK            0  /*1000 most common CJK radicals*/
-
-/*Pixel perfect monospace font
- * http://pelulamu.net/unscii/ */
-#define LV_FONT_UNSCII_8     0
-#define LV_FONT_UNSCII_16     0
-
-/* Optionally declare your custom fonts here.
- * You can use these fonts as default font too
- * and they will be available globally. E.g.
- * #define LV_FONT_CUSTOM_DECLARE LV_FONT_DECLARE(my_font_1) \
- *                                LV_FONT_DECLARE(my_font_2)
- */
-#define LV_FONT_CUSTOM_DECLARE
-
-/* Enable it if you have fonts with a lot of characters.
- * The limit depends on the font size, font face and bpp
- * but with > 10,000 characters if you see issues probably you need to enable it.*/
-#define LV_FONT_FMT_TXT_LARGE   0
-
-/* Enables/disables support for compressed fonts. If it's disabled, compressed
- * glyphs cannot be processed by the library and won't be rendered.
- */
-#define LV_USE_FONT_COMPRESSED 1
-
-/* Enable subpixel rendering */
-#define LV_USE_FONT_SUBPX 1
-#if LV_USE_FONT_SUBPX
-/* Set the pixel order of the display.
- * Important only if "subpx fonts" are used.
- * With "normal" font it doesn't matter.
- */
-#define LV_FONT_SUBPX_BGR    0
-=======
 /*Allow dithering the gradients (to achieve visual smooth color gradients on limited color depth display)
  *LV_DITHER_GRADIENT implies allocating one or two more lines of the object's rendering surface
  *The increase in memory consumption is (32 bits * object width) plus 24 bits * object width if using error diffusion */
@@ -413,7 +166,6 @@ typedef void * lv_img_decoder_user_data_t;
      *Error diffusion dithering gets a much better visual result, but implies more CPU consumption and memory when drawing.
      *The increase in memory consumption is (24 bits * object's width)*/
     #define LV_DITHER_ERROR_DIFFUSION 0
->>>>>>> Stashed changes
 #endif
 
 /*Maximum buffer size to allocate for rotation.
@@ -689,18 +441,10 @@ typedef void * lv_img_decoder_user_data_t;
 /*The control character to use for signalling text recoloring.*/
 #define LV_TXT_COLOR_CMD "#"
 
-<<<<<<< Updated upstream
-/* Support bidirectional texts.
- * Allows mixing Left-to-Right and Right-to-Left texts.
- * The direction will be processed according to the Unicode Bidirectional Algorithm:
- * https://www.w3.org/International/articles/inline-bidi-markup/uba-basics*/
-#define LV_USE_BIDI     0
-=======
 /*Support bidirectional texts. Allows mixing Left-to-Right and Right-to-Left texts.
  *The direction will be processed according to the Unicode Bidirectional Algorithm:
  *https://www.w3.org/International/articles/inline-bidi-markup/uba-basics*/
 #define LV_USE_BIDI 0
->>>>>>> Stashed changes
 #if LV_USE_BIDI
     /*Set the default direction. Supported values:
     *`LV_BASE_DIR_LTR` Left-to-Right
@@ -887,13 +631,6 @@ typedef void * lv_img_decoder_user_data_t;
     #define LV_FS_FATFS_CACHE_SIZE 0    /*>0 to cache this number of bytes in lv_fs_read()*/
 #endif
 
-<<<<<<< Updated upstream
-/*Tab (dependencies: lv_page, lv_btnm)*/
-#define LV_USE_TABVIEW      1
-#  if LV_USE_TABVIEW != 0
-/*Time of slide animation [ms] (0: no animation)*/
-#  define LV_TABVIEW_DEF_ANIM_TIME    300
-=======
 /*PNG decoder library*/
 #define LV_USE_PNG 0
 
@@ -925,7 +662,6 @@ typedef void * lv_img_decoder_user_data_t;
         #define LV_FREETYPE_CACHE_FT_FACES 0
         #define LV_FREETYPE_CACHE_FT_SIZES 0
     #endif
->>>>>>> Stashed changes
 #endif
 
 /*Rlottie library*/

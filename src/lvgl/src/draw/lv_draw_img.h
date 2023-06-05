@@ -15,11 +15,7 @@ extern "C" {
  *********************/
 #include "lv_img_decoder.h"
 #include "lv_img_buf.h"
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_img.h
-#include "../lv_core/lv_style.h"
-=======
 #include "../misc/lv_style.h"
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_img.h
 
 /*********************
  *      DEFINES

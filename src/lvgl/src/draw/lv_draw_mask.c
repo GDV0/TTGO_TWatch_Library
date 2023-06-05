@@ -6,20 +6,12 @@
 /*********************
  *      INCLUDES
  *********************/
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_mask.c
-#include "lv_draw_mask.h"
-#include "../lv_misc/lv_math.h"
-#include "../lv_misc/lv_log.h"
-#include "../lv_misc/lv_debug.h"
-#include "../lv_misc/lv_gc.h"
-=======
 #include "lv_draw.h"
 #if LV_DRAW_COMPLEX
 #include "../misc/lv_math.h"
 #include "../misc/lv_log.h"
 #include "../misc/lv_assert.h"
 #include "../misc/lv_gc.h"
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_mask.c
 
 /*********************
  *      DEFINES
@@ -493,8 +485,6 @@ void lv_draw_mask_radius_init(lv_draw_mask_radius_param_t * param, const lv_area
     param->dsc.cb = (lv_draw_mask_xcb_t)lv_draw_mask_radius;
     param->dsc.type = LV_DRAW_MASK_TYPE_RADIUS;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_mask.c
-=======
     if(radius == 0) {
         param->circle = NULL;
         return;
@@ -538,7 +528,6 @@ void lv_draw_mask_radius_init(lv_draw_mask_radius_param_t * param, const lv_area
     circ_calc_aa4(param->circle, radius);
 }
 
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_mask.c
 /**
  * Initialize a fade mask.
  * @param param pointer to a `lv_draw_mask_param_t` to initialize
@@ -575,8 +564,6 @@ void lv_draw_mask_map_init(lv_draw_mask_map_param_t * param, const lv_area_t * c
     param->dsc.type = LV_DRAW_MASK_TYPE_MAP;
 }
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_mask.c
-=======
 void lv_draw_mask_polygon_init(lv_draw_mask_polygon_param_t * param, const lv_point_t * points, uint16_t point_cnt)
 {
     /*Join adjacent points if they are on the same coordinate*/
@@ -602,7 +589,6 @@ void lv_draw_mask_polygon_init(lv_draw_mask_polygon_param_t * param, const lv_po
     param->dsc.type = LV_DRAW_MASK_TYPE_POLYGON;
 }
 
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_mask.c
 /**********************
  *   STATIC FUNCTIONS
  **********************/
@@ -639,13 +625,8 @@ LV_ATTRIBUTE_FAST_MEM static lv_draw_mask_res_t lv_draw_mask_line(lv_opa_t * mas
                 else {
                     int32_t k = - abs_x;
                     if(k < 0) return LV_DRAW_MASK_RES_TRANSP;
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_mask.c
-                    if(k >= 0 && k < len) _lv_memset_00(&mask_buf[k], len - k);
-                    return LV_DRAW_MASK_RES_CHANGED;
-=======
                     if(k >= 0 && k < len) lv_memset_00(&mask_buf[k], len - k);
                     return  LV_DRAW_MASK_RES_CHANGED;
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_mask.c
                 }
             }
             else {
@@ -654,13 +635,8 @@ LV_ATTRIBUTE_FAST_MEM static lv_draw_mask_res_t lv_draw_mask_line(lv_opa_t * mas
                     int32_t k = - abs_x;
                     if(k < 0) k = 0;
                     if(k >= len) return LV_DRAW_MASK_RES_TRANSP;
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_mask.c
-                    else if(k >= 0 && k < len) _lv_memset_00(&mask_buf[0], k);
-                    return LV_DRAW_MASK_RES_CHANGED;
-=======
                     else if(k >= 0 && k < len) lv_memset_00(&mask_buf[0], k);
                     return  LV_DRAW_MASK_RES_CHANGED;
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_mask.c
                 }
             }
         }
@@ -1271,8 +1247,6 @@ LV_ATTRIBUTE_FAST_MEM static lv_draw_mask_res_t lv_draw_mask_map(lv_opa_t * mask
     return LV_DRAW_MASK_RES_CHANGED;
 }
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_draw/lv_draw_mask.c
-=======
 LV_ATTRIBUTE_FAST_MEM static lv_draw_mask_res_t lv_draw_mask_polygon(lv_opa_t * mask_buf, lv_coord_t abs_x,
                                                                      lv_coord_t abs_y, lv_coord_t len,
                                                                      lv_draw_mask_polygon_param_t * param)
@@ -1544,7 +1518,6 @@ static lv_opa_t * get_next_line(_lv_draw_mask_radius_circle_dsc_t * c, lv_coord_
 }
 
 
->>>>>>> Stashed changes:src/lvgl/src/draw/lv_draw_mask.c
 LV_ATTRIBUTE_FAST_MEM static inline lv_opa_t mask_mix(lv_opa_t mask_act, lv_opa_t mask_new)
 {
     if(mask_new >= LV_OPA_MAX) return mask_act;

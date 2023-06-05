@@ -14,11 +14,6 @@
 #include "../misc/lv_fs.h"
 #include "lv_font_loader.h"
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_loader.c
-#if LV_USE_FILESYSTEM
-
-=======
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_loader.c
 /**********************
  *      TYPEDEFS
  **********************/
@@ -95,17 +90,10 @@ lv_font_t * lv_font_load(const char * font_name)
     if(res != LV_FS_RES_OK)
         return NULL;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_loader.c
-    if(res == LV_FS_RES_OK) {
-        success = lvgl_load_font(&file, font);
-
-        if(!success) {
-=======
     lv_font_t * font = lv_mem_alloc(sizeof(lv_font_t));
     if(font) {
         memset(font, 0, sizeof(lv_font_t));
         if(!lvgl_load_font(&file, font)) {
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_loader.c
             LV_LOG_WARN("Error loading font file: %s\n", font_name);
             /*
             * When `lvgl_load_font` fails it can leak some pointers.
@@ -115,13 +103,9 @@ lv_font_t * lv_font_load(const char * font_name)
             lv_font_free(font);
             font = NULL;
         }
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_loader.c
-=======
     }
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_loader.c
 
-        lv_fs_close(&file);
-    }
+    lv_fs_close(&file);
 
     return font;
 }
@@ -263,24 +247,12 @@ static bool load_cmaps_tables(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_ds
     }
 
     for(unsigned int i = 0; i < font_dsc->cmap_num; ++i) {
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_loader.c
-        lv_fs_res_t res = lv_fs_seek(fp, cmaps_start + cmap_table[i].data_offset);
-=======
         lv_fs_res_t res = lv_fs_seek(fp, cmaps_start + cmap_table[i].data_offset, LV_FS_SEEK_SET);
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_loader.c
         if(res != LV_FS_RES_OK) {
             return false;
         }
 
         lv_font_fmt_txt_cmap_t * cmap = (lv_font_fmt_txt_cmap_t *) & (font_dsc->cmaps[i]);
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_loader.c
-=======
-
-        cmap->range_start = cmap_table[i].range_start;
-        cmap->range_length = cmap_table[i].range_length;
-        cmap->glyph_id_start = cmap_table[i].glyph_id_start;
-        cmap->type = cmap_table[i].format_type;
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_loader.c
 
         cmap->range_start = cmap_table[i].range_start;
         cmap->range_length = cmap_table[i].range_length;
@@ -469,25 +441,6 @@ static int32_t load_glyph(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_dsc,
         int next_offset = (i < loca_count - 1) ? glyph_offset[i + 1] : (uint32_t)glyph_length;
         int bmp_size = next_offset - glyph_offset[i] - nbits / 8;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_loader.c
-        if(nbits % 8 == 0) {  /* Fast path */
-            if(lv_fs_read(fp, &glyph_bmp[cur_bmp_size], bmp_size, NULL) != LV_FS_RES_OK) {
-                return -1;
-            }
-        }
-        else {
-            for(int k = 0; k < bmp_size - 1; ++k) {
-                glyph_bmp[cur_bmp_size + k] = read_bits(&bit_it, 8, &res);
-                if(res != LV_FS_RES_OK) {
-                    return -1;
-                }
-            }
-            glyph_bmp[cur_bmp_size + bmp_size - 1] = read_bits(&bit_it, 8 - nbits % 8, &res);
-            if(res != LV_FS_RES_OK) {
-                return -1;
-            }
-        }
-=======
         if(nbits % 8 == 0) {  /*Fast path*/
             if(lv_fs_read(fp, &glyph_bmp[cur_bmp_size], bmp_size, NULL) != LV_FS_RES_OK) {
                 return -1;
@@ -509,7 +462,6 @@ static int32_t load_glyph(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_dsc,
             glyph_bmp[cur_bmp_size + bmp_size - 1] = glyph_bmp[cur_bmp_size + bmp_size - 1] << (nbits % 8);
 
         }
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_loader.c
 
         cur_bmp_size += bmp_size;
     }
@@ -727,8 +679,3 @@ int32_t load_kern(lv_fs_file_t * fp, lv_font_fmt_txt_dsc_t * font_dsc, uint8_t f
 
     return kern_length;
 }
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_loader.c
-
-#endif /*LV_USE_FILESYSTEM*/
-=======
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_loader.c

@@ -47,11 +47,7 @@ typedef struct {
     lv_coord_t y2;
 } lv_area_t;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_area.h
-/** Alignments */
-=======
 /** Alignments*/
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_area.h
 enum {
     LV_ALIGN_DEFAULT = 0,
     LV_ALIGN_TOP_LEFT,
@@ -79,8 +75,6 @@ enum {
 };
 typedef uint8_t lv_align_t;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_area.h
-=======
 enum {
     LV_DIR_NONE     = 0x00,
     LV_DIR_LEFT     = (1 << 0),
@@ -94,7 +88,6 @@ enum {
 
 typedef uint8_t lv_dir_t;
 
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_area.h
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
@@ -217,6 +210,7 @@ bool _lv_area_is_on(const lv_area_t * a1_p, const lv_area_t * a2_p);
  * @return true: `ain_p` is fully inside `aholder_p`
  */
 bool _lv_area_is_in(const lv_area_t * ain_p, const lv_area_t * aholder_p, lv_coord_t radius);
+
 
 /**
  * Check if an area is fully out of an other

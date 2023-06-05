@@ -8,21 +8,12 @@
  *********************/
 #include "lv_font.h"
 #include "lv_font_fmt_txt.h"
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_fmt_txt.c
-#include "../lv_misc/lv_debug.h"
-#include "../lv_misc/lv_types.h"
-#include "../lv_misc/lv_gc.h"
-#include "../lv_misc/lv_log.h"
-#include "../lv_misc/lv_utils.h"
-#include "../lv_misc/lv_mem.h"
-=======
 #include "../misc/lv_assert.h"
 #include "../misc/lv_types.h"
 #include "../misc/lv_gc.h"
 #include "../misc/lv_log.h"
 #include "../misc/lv_utils.h"
 #include "../misc/lv_mem.h"
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_fmt_txt.c
 
 /*********************
  *      DEFINES
@@ -124,20 +115,12 @@ const uint8_t * lv_font_get_bitmap_fmt_txt(const lv_font_t * font, uint32_t unic
                 break;
         }
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_fmt_txt.c
-        if(_lv_mem_get_size(LV_GC_ROOT(_lv_font_decompr_buf)) < buf_size) {
-            uint8_t * tmp = lv_mem_realloc(LV_GC_ROOT(_lv_font_decompr_buf), buf_size);
-            LV_ASSERT_MEM(tmp);
-            if(tmp == NULL) return NULL;
-            LV_GC_ROOT(_lv_font_decompr_buf) = tmp;
-=======
         if(last_buf_size < buf_size) {
             uint8_t * tmp = lv_mem_realloc(LV_GC_ROOT(_lv_font_decompr_buf), buf_size);
             LV_ASSERT_MALLOC(tmp);
             if(tmp == NULL) return NULL;
             LV_GC_ROOT(_lv_font_decompr_buf) = tmp;
             last_buf_size = buf_size;
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_fmt_txt.c
         }
 
         bool prefilter = fdsc->bitmap_format == LV_FONT_FMT_TXT_COMPRESSED ? true : false;
@@ -294,13 +277,8 @@ static int8_t get_kern_value(const lv_font_t * font, uint32_t gid_left, uint32_t
         /*Kern pairs*/
         const lv_font_fmt_txt_kern_pair_t * kdsc = fdsc->kern_dsc;
         if(kdsc->glyph_ids_size == 0) {
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_fmt_txt.c
-            /* Use binary search to find the kern value.
-             * The pairs are ordered left_id first, then right_id secondly. */
-=======
             /*Use binary search to find the kern value.
              *The pairs are ordered left_id first, then right_id secondly.*/
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_fmt_txt.c
             const uint16_t * g_ids = kdsc->glyph_ids;
             uint16_t g_id_both = (gid_right << 8) + gid_left; /*Create one number from the ids*/
             uint16_t * kid_p = _lv_utils_bsearch(&g_id_both, g_ids, kdsc->pair_cnt, 2, kern_pair_8_compare);
@@ -312,13 +290,8 @@ static int8_t get_kern_value(const lv_font_t * font, uint32_t gid_left, uint32_t
             }
         }
         else if(kdsc->glyph_ids_size == 1) {
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_fmt_txt.c
-            /* Use binary search to find the kern value.
-             * The pairs are ordered left_id first, then right_id secondly. */
-=======
             /*Use binary search to find the kern value.
              *The pairs are ordered left_id first, then right_id secondly.*/
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_fmt_txt.c
             const uint32_t * g_ids = kdsc->glyph_ids;
             uint32_t g_id_both = (gid_right << 16) + gid_left; /*Create one number from the ids*/
             uint32_t * kid_p = _lv_utils_bsearch(&g_id_both, g_ids, kdsc->pair_cnt, 4, kern_pair_16_compare);

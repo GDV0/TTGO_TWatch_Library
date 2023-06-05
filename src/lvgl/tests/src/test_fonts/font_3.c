@@ -945,7 +945,4 @@ lv_font_t font_3 = {
 };
 
 #endif /*#if FONT_3*/
-<<<<<<< Updated upstream:src/lvgl/tests/lv_test_fonts/font_3.c
-=======
 #endif
->>>>>>> Stashed changes:src/lvgl/tests/src/test_fonts/font_3.c

@@ -47,19 +47,11 @@ lv_obj_t * lv_obj_get_scr(lv_obj_t * obj);
 Always use `/*Something*/` format and NOT `//Something`
 
 Write readable code to avoid descriptive comments like:
-<<<<<<< Updated upstream
-`x++; /* Add 1 to x */`.
-The code should show clearly what you are doing.
-
-You should write **why** have you done this:
-`x++; /*Because of closing '\0' of the string */`
-=======
 `x++; /*Add 1 to x*/`.
 The code should show clearly what you are doing.
 
 You should write **why** have you done this:
 `x++; /*Because of closing '\0' of the string*/`
->>>>>>> Stashed changes
 
 Short "code summaries" of a few lines are accepted. E.g. `/*Calculate the new coordinates*/`
 
@@ -74,11 +66,7 @@ Here is example to show bracket placing and using of white spaces:
  * @param text '\0' terminated character string. NULL to refresh with the current text.
  */
 void lv_label_set_text(lv_obj_t * label, const char * text)
-<<<<<<< Updated upstream
-{   /* Main brackets of functions in new line*/
-=======
 {   /*Main brackets of functions in new line*/
->>>>>>> Stashed changes
 
     if(label == NULL) return; /*No bracket only if the command is inline with the if statement*/
 

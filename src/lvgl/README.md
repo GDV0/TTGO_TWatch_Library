@@ -5,26 +5,15 @@
 </p>
 
 <p align="center">
-<<<<<<< Updated upstream
-LVGL provides everything you need to create embedded GUI with easy-to-use graphical elements, beautiful visual effects and low memory footprint.
-=======
 LVGL provides everything you need to create an embedded GUI with easy-to-use graphical elements, beautiful visual effects and a low memory footprint.
->>>>>>> Stashed changes
 </p>
 
 <h4 align="center">
 <a href="https://lvgl.io">Website </a> &middot;
-<<<<<<< Updated upstream
-<a href="https://lvgl.io/demos">Online demo</a> &middot;
-<a href="https://lvgl.github.io/lv_examples/">Nightly demos</a> &middot;
-<a href="https://docs.lvgl.io/">Docs</a> &middot;
-<a href="https://forum.lvgl.io">Forum</a>
-=======
 <a href="https://docs.lvgl.io/">Docs</a> &middot;
 <a href="https://forum.lvgl.io">Forum</a>  &middot;
 <a href="https://lvgl.io/services">Services</a>  &middot;
 <a href="https://docs.lvgl.io/master/examples.html">Interactive examples</a>
->>>>>>> Stashed changes
 </h4>
 
 
@@ -90,23 +79,7 @@ Basically, every modern controller (which is able to drive a display) is suitabl
   </tr>
 
   <tr>
-<<<<<<< Updated upstream
-    <td> <strong>Stack</strong></td>
-    <td> &gt; 2 kB </td>
-    <td> &gt; 8 kB</td>
-  </tr>
-
-  <tr>
-    <td> <strong>Heap</strong></td>
-    <td> &gt; 2 kB </td>
-    <td> &gt; 8 kB</td>
-  </tr>
-
-  <tr>
-    <td> <strong>Display buffer</strong></td>
-=======
     <td> <strong>Draw buffer</strong></td>
->>>>>>> Stashed changes
     <td> &gt; 1 &times; <em>hor. res.</em> pixels </td>
     <td> &gt; 1/10 screen size </td>
   </tr>
@@ -154,11 +127,7 @@ This list shows the recommended way of learning the library:
 7. Read the [Overview](https://docs.lvgl.io/master/overview/index.html) page to get a better understanding of the library (2-3 hours)
 8. Check the documentation of the [Widgets](https://docs.lvgl.io/master/widgets/index.html) to see their features and usage
 9. If you have questions go to the [Forum](http://forum.lvgl.io/)
-<<<<<<< Updated upstream
-10. Read the [Contributing](https://docs.lvgl.io/latest/en/html/contributing/index.html) guide to see how you can help to improve LVGL (15 minutes)
-=======
 10. Read the [Contributing](https://docs.lvgl.io/master/CONTRIBUTING.html) guide to see how you can help to improve LVGL (15 minutes)
->>>>>>> Stashed changes
 
 ## Examples
 

@@ -38,11 +38,7 @@
 
 #include <stdbool.h>
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_printf.c
-#define PRINTF_DISABLE_SUPPORT_FLOAT    LV_SPRINTF_DISABLE_FLOAT
-=======
 #define PRINTF_DISABLE_SUPPORT_FLOAT    (!LV_SPRINTF_USE_FLOAT)
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_printf.c
 
 // 'ntoa' conversion buffer size, this must be big enough to hold one converted
 // numeric number including padded zeros (dynamically created on stack)

@@ -62,11 +62,7 @@ static inline LV_ATTRIBUTE_FAST_MEM int16_t lv_trigo_cos(int16_t angle)
  * @param u3 end values in range of [0..LV_BEZIER_VAL_MAX]
  * @return the value calculated from the given parameters in range of [0..LV_BEZIER_VAL_MAX]
  */
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_math.h
-uint32_t _lv_bezier3(uint32_t t, uint32_t u0, uint32_t u1, uint32_t u2, uint32_t u3);
-=======
 uint32_t lv_bezier3(uint32_t t, uint32_t u0, uint32_t u1, uint32_t u2, uint32_t u3);
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_math.h
 
 /**
  * Calculate the atan2 of a vector.
@@ -74,11 +70,7 @@ uint32_t lv_bezier3(uint32_t t, uint32_t u0, uint32_t u1, uint32_t u2, uint32_t 
  * @param y
  * @return the angle in degree calculated from the given parameters in range of [0..360]
  */
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_math.h
-uint16_t _lv_atan2(int x, int y);
-=======
 uint16_t lv_atan2(int x, int y);
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_math.h
 
 //! @cond Doxygen_Suppress
 
@@ -113,9 +105,6 @@ int64_t lv_pow(int64_t base, int8_t exp);
  * @param max_out max output range
  * @return the mapped number
  */
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_math.h
-int32_t _lv_map(int32_t x, int32_t min_in, int32_t max_in, int32_t min, int32_t max);
-=======
 int32_t lv_map(int32_t x, int32_t min_in, int32_t max_in, int32_t min_out, int32_t max_out);
 
 /**
@@ -125,7 +114,6 @@ int32_t lv_map(int32_t x, int32_t min_in, int32_t max_in, int32_t min_out, int32
  * @return return the random number. min <= return_value <= max
  */
 uint32_t lv_rand(uint32_t min, uint32_t max);
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_math.h
 
 /**********************
  *      MACROS

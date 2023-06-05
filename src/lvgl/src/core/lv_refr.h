@@ -49,13 +49,8 @@ void _lv_refr_init(void);
 
 /**
  * Redraw the invalidated areas now.
-<<<<<<< Updated upstream:src/lvgl/src/lv_core/lv_refr.h
- * Normally the redrawing is periodically executed in `lv_task_handler` but a long blocking process
- * can prevent the call of `lv_task_handler`. In this case if the GUI is updated in the process
-=======
  * Normally the redrawing is periodically executed in `lv_timer_handler` but a long blocking process
  * can prevent the call of `lv_timer_handler`. In this case if the GUI is updated in the process
->>>>>>> Stashed changes:src/lvgl/src/core/lv_refr.h
  * (e.g. progress bar) this function can be called when the screen should be updated.
  * @param disp pointer to display to refresh. NULL to refresh all displays.
  */
@@ -92,16 +87,12 @@ void _lv_refr_set_disp_refreshing(lv_disp_t * disp);
 
 #if LV_USE_PERF_MONITOR
 /**
-<<<<<<< Updated upstream:src/lvgl/src/lv_core/lv_refr.h
- * Get the average FPS since start up
-=======
  * Reset FPS counter
  */
 void lv_refr_reset_fps_counter(void);
 
 /**
  * Get the average FPS
->>>>>>> Stashed changes:src/lvgl/src/core/lv_refr.h
  * @return the average FPS
  */
 uint32_t lv_refr_get_fps_avg(void);

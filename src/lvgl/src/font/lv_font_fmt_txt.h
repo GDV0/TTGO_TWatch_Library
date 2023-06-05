@@ -36,13 +36,8 @@ typedef struct {
     int8_t ofs_x;                   /**< x offset of the bounding box*/
     int8_t ofs_y;                   /**< y offset of the bounding box. Measured from the top of the line*/
 #else
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_fmt_txt.h
-    uint32_t bitmap_index;          /**< Start index of the bitmap. A font can be max 4 GB. */
-    uint32_t adv_w;                 /**< Draw the next glyph after this width. 28.4 format (real_value * 16 is stored). */
-=======
     uint32_t bitmap_index;          /**< Start index of the bitmap. A font can be max 4 GB.*/
     uint32_t adv_w;                 /**< Draw the next glyph after this width. 28.4 format (real_value * 16 is stored).*/
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_fmt_txt.h
     uint16_t box_w;                 /**< Width of the glyph's bounding box*/
     uint16_t box_h;                 /**< Height of the glyph's bounding box*/
     int16_t ofs_x;                  /**< x offset of the bounding box*/
@@ -50,11 +45,7 @@ typedef struct {
 #endif
 } lv_font_fmt_txt_glyph_dsc_t;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_fmt_txt.h
-/** Format of font character map. */
-=======
 /** Format of font character map.*/
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_fmt_txt.h
 enum {
     LV_FONT_FMT_TXT_CMAP_FORMAT0_FULL,
     LV_FONT_FMT_TXT_CMAP_SPARSE_FULL,
@@ -64,12 +55,8 @@ enum {
 
 typedef uint8_t lv_font_fmt_txt_cmap_type_t;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_fmt_txt.h
-/* Map codepoints to a `glyph_dsc`s
-=======
 /**
  * Map codepoints to a `glyph_dsc`s
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_fmt_txt.h
  * Several formats are supported to optimize memory usage
  * See https://github.com/lvgl/lv_font_conv/blob/master/doc/font_spec.md
  */
@@ -164,16 +151,12 @@ typedef enum {
     LV_FONT_FMT_TXT_COMPRESSED_NO_PREFILTER = 1,
 } lv_font_fmt_txt_bitmap_format_t;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_font/lv_font_fmt_txt.h
-/*Describe store additional data for fonts */
-=======
 typedef struct {
     uint32_t last_letter;
     uint32_t last_glyph_id;
 } lv_font_fmt_txt_glyph_cache_t;
 
 /*Describe store additional data for fonts*/
->>>>>>> Stashed changes:src/lvgl/src/font/lv_font_fmt_txt.h
 typedef struct {
     /*The bitmaps of all glyphs*/
     const uint8_t * glyph_bitmap;

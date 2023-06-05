@@ -19,11 +19,11 @@ extern "C" {
 
 /*Testing of dependencies*/
 #if LV_USE_BTNMATRIX == 0
-#error "lv_kb: lv_btnm is required. Enable it in lv_conf.h (LV_USE_BTNMATRIX 1)"
+#error "lv_kb: lv_btnm is required. Enable it in lv_conf.h (LV_USE_BTNMATRIX  1) "
 #endif
 
 #if LV_USE_TEXTAREA == 0
-#error "lv_kb: lv_ta is required. Enable it in lv_conf.h (LV_USE_TEXTAREA 1)"
+#error "lv_kb: lv_ta is required. Enable it in lv_conf.h (LV_USE_TEXTAREA  1) "
 #endif
 
 /*********************
@@ -40,18 +40,11 @@ enum {
     LV_KEYBOARD_MODE_TEXT_LOWER,
     LV_KEYBOARD_MODE_TEXT_UPPER,
     LV_KEYBOARD_MODE_SPECIAL,
-<<<<<<< Updated upstream:src/lvgl/src/lv_widgets/lv_keyboard.h
-    LV_KEYBOARD_MODE_NUM
-#if LV_USE_ARABIC_PERSIAN_CHARS == 1
-    , LV_KEYBOARD_MODE_TEXT_ARABIC
-#endif
-=======
     LV_KEYBOARD_MODE_NUMBER,
     LV_KEYBOARD_MODE_USER_1,
     LV_KEYBOARD_MODE_USER_2,
     LV_KEYBOARD_MODE_USER_3,
     LV_KEYBOARD_MODE_USER_4,
->>>>>>> Stashed changes:src/lvgl/src/extra/widgets/keyboard/lv_keyboard.h
 };
 typedef uint8_t lv_keyboard_mode_t;
 

@@ -73,28 +73,7 @@ typedef enum {
     LV_INDEV_STATE_PRESSED
 } lv_indev_state_t;
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_hal/lv_hal_indev.h
-enum {
-    LV_DRAG_DIR_HOR = 0x1, /**< Object can be dragged horizontally. */
-    LV_DRAG_DIR_VER = 0x2, /**< Object can be dragged vertically. */
-    LV_DRAG_DIR_BOTH = 0x3, /**< Object can be dragged in all directions. */
-    LV_DRAG_DIR_ONE = 0x4, /**< Object can be dragged only one direction (the first move). */
-};
-
-typedef uint8_t lv_drag_dir_t;
-
-enum {
-    LV_GESTURE_DIR_TOP,     /**< Gesture dir up. */
-    LV_GESTURE_DIR_BOTTOM,  /**< Gesture dir down. */
-    LV_GESTURE_DIR_LEFT,    /**< Gesture dir left. */
-    LV_GESTURE_DIR_RIGHT,   /**< Gesture dir right. */
-};
-typedef uint8_t lv_gesture_dir_t;
-
-/** Data structure passed to an input driver to fill */
-=======
 /** Data structure passed to an input driver to fill*/
->>>>>>> Stashed changes:src/lvgl/src/hal/lv_hal_indev.h
 typedef struct {
     lv_point_t point; /**< For LV_INDEV_TYPE_POINTER the currently pressed point*/
     uint32_t key;     /**< For LV_INDEV_TYPE_KEYPAD the currently pressed key*/

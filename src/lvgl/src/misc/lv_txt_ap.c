@@ -10,12 +10,8 @@
 #include "lv_bidi.h"
 #include "lv_txt.h"
 #include "lv_txt_ap.h"
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_txt_ap.c
-#include "../lv_draw/lv_draw.h"
-=======
 #include "lv_mem.h"
 #include "../draw/lv_draw.h"
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_txt_ap.c
 
 /*********************
  *      DEFINES
@@ -42,10 +38,7 @@ typedef struct {
 #if LV_USE_ARABIC_PERSIAN_CHARS == 1
 static uint32_t lv_ap_get_char_index(uint16_t c);
 static uint32_t lv_txt_lam_alef(uint32_t ch_curr, uint32_t ch_next);
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_txt_ap.c
-=======
 static bool lv_txt_is_arabic_vowel(uint16_t c);
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_txt_ap.c
 
 /**********************
  *  STATIC VARIABLES
@@ -300,12 +293,9 @@ static uint32_t lv_txt_lam_alef(uint32_t ch_curr, uint32_t ch_next)
     return 0;
 }
 
-<<<<<<< Updated upstream:src/lvgl/src/lv_misc/lv_txt_ap.c
-=======
 static bool lv_txt_is_arabic_vowel(uint16_t c)
 {
     return (c >= 0x064B) && (c <= 0x0652);
 }
 
->>>>>>> Stashed changes:src/lvgl/src/misc/lv_txt_ap.c
 #endif
