@@ -19,6 +19,11 @@ extern "C" {
  *      DEFINES
  *********************/
 
+#define LV_NO_TASK_READY        LV_NO_TIMER_READY
+#define LV_INDEV_STATE_REL      LV_INDEV_STATE_RELEASED
+#define LV_INDEV_STATE_PR       LV_INDEV_STATE_PRESSED
+#define LV_OBJ_FLAG_SNAPABLE    LV_OBJ_FLAG_SNAPPABLE   /*Fixed typo*/
+
 /**********************
  *      TYPEDEFS
  **********************/
@@ -27,16 +32,12 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-/*---------------------
- * V6.0 COMPATIBILITY
- *--------------------*/
-#if LV_USE_API_EXTENSION_V6
-
-static inline void lv_task_once(lv_task_t * task)
+static inline LV_ATTRIBUTE_TIMER_HANDLER uint32_t lv_task_handler(void)
 {
-    lv_task_set_repeat_count(task, 1);
+    return lv_timer_handler();
 }
 
+<<<<<<< Updated upstream
 #if LV_USE_CHECKBOX
 
 #define lv_checkbox_set_static_text lv_checkbox_set_text_static
@@ -221,12 +222,54 @@ static inline void lv_obj_align_origo_y(lv_obj_t * obj, const lv_obj_t * base, l
 }
 
 #endif /*LV_USE_API_EXTENSION_V6*/
+=======
+>>>>>>> Stashed changes
 /**********************
  *      MACROS
  **********************/
 
+
+/**********************
+ * INLINE FUNCTIONS
+ **********************/
+
+/**
+ * Move the object to the foreground.
+ * It will look like if it was created as the last child of its parent.
+ * It also means it can cover any of the siblings.
+ * @param obj       pointer to an object
+ */
+static inline void lv_obj_move_foreground(lv_obj_t * obj)
+{
+    lv_obj_t * parent = lv_obj_get_parent(obj);
+    lv_obj_move_to_index(obj, lv_obj_get_child_cnt(parent) - 1);
+}
+
+/**
+ * Move the object to the background.
+ * It will look like if it was created as the first child of its parent.
+ * It also means any of the siblings can cover the object.
+ * @param obj       pointer to an object
+ */
+static inline void lv_obj_move_background(lv_obj_t * obj)
+{
+    lv_obj_move_to_index(obj, 0);
+}
+
+
+
+/**********************
+ * DEPRECATED FUNCTIONS
+ **********************/
+
+static inline uint32_t lv_obj_get_child_id(const struct _lv_obj_t * obj)
+{
+    LV_LOG_WARN("lv_obj_get_child_id(obj) is deprecated, please use lv_obj_get_index(obj).");
+    return lv_obj_get_index(obj);
+}
+
 #ifdef __cplusplus
-} /* extern "C" */
+} /*extern "C"*/
 #endif
 
 #endif /*LV_API_MAP_H*/
